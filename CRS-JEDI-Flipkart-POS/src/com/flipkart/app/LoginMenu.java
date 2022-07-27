@@ -1,0 +1,44 @@
+package com.flipkart.app;
+
+import com.flipkart.app.usermenus.AdminMenu;
+import com.flipkart.app.usermenus.ProfessorMenu;
+import com.flipkart.app.usermenus.StudentMenu;
+import com.flipkart.app.usermenus.UserMenu;
+
+import java.util.Scanner;
+
+public class LoginMenu {
+    public static void showLoginMenu() {
+        System.out.println("Login menu.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter Password: ");
+        String password = scanner.nextLine();
+        System.out.println("Roles: ");
+        System.out.println("1. Student ");
+        System.out.println("2. Professor ");
+        System.out.println("3. Admin ");
+        System.out.print("Select a role: ");
+        int role = scanner.nextInt();
+        UserMenu userMenu = null;
+        switch(role) {
+            case 1:
+                userMenu = new StudentMenu();
+                userMenu.showMenu();
+                break;
+            case 2:
+                userMenu = new ProfessorMenu();
+                userMenu.showMenu();
+                break;
+            case 3:
+                userMenu = new AdminMenu();
+                userMenu.showMenu();
+                break;
+
+            default:
+                System.out.println("Please select a valid option.");
+        }
+
+    }
+}
