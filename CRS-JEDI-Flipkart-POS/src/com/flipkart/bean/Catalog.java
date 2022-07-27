@@ -1,14 +1,16 @@
 package com.flipkart.bean;
 
+import java.util.List;
+
 public class Catalog {
-    public Course[] getCourseList() {
+    public List<Course> getCourseList() {
         return courseList;
     }
 
-    public void setCourseList(Course[] courseList) {
+    public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
     }
 
-    private Course[] courseList;
+    private List<Course> courseList;
 
 }

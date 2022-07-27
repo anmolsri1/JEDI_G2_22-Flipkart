@@ -4,6 +4,9 @@ import com.flipkart.app.usermenus.AdminMenu;
 import com.flipkart.app.usermenus.ProfessorMenu;
 import com.flipkart.app.usermenus.StudentMenu;
 import com.flipkart.app.usermenus.UserMenu;
+import com.flipkart.bean.User;
+import com.flipkart.service.UserInterface;
+import com.flipkart.service.UserServiceImpl;
 
 import java.util.Scanner;
 
@@ -21,6 +24,14 @@ public class LoginMenu {
         System.out.println("3. Admin ");
         System.out.print("Select a role: ");
         int role = scanner.nextInt();
+
+        // verifyCredentials
+        UserInterface userInterface = new UserServiceImpl();
+        if(!userInterface.verifyCredentials(username, password, User.roleMap[role])) {
+            System.out.println("Wrong credentials...");
+            return;
+        }
+
         UserMenu userMenu = null;
         switch(role) {
             case 1:

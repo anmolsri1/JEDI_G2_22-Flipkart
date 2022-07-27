@@ -11,7 +11,8 @@ public class StudentMenu implements UserMenu {
         System.out.println("2. Drop Course");
         System.out.println("3. View Catalog");
         System.out.println("4. View Grade Card");
-        System.out.println("5. Pay Fee");
+        System.out.println("5. View Selected Courses");
+        System.out.println("6. Pay Fee");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
@@ -29,6 +30,9 @@ public class StudentMenu implements UserMenu {
                 System.out.println("VIEW GRADE CARD OPTION SELECTED.");
                 break;
             case 5:
+                System.out.println("View Selected Courses");
+                break;
+            case 6:
                 System.out.println("PAY FEE OPTION SELECTED.");
                 break;
             default:

@@ -8,7 +8,7 @@ public class AdminMenu implements UserMenu {
         System.out.println("----------Admin Menu----------");
         System.out.println("1. Verify Students");
         System.out.println("2. Add Professor");
-        System.out.println("3. Generate Grade Card");
+        System.out.println("3. Get Grade Card");
         System.out.println("4. Add or remove courses");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +21,7 @@ public class AdminMenu implements UserMenu {
                 System.out.println("ADD PROFESSOR OPTION SELECTED.");
                 break;
             case 3:
-                System.out.println("GENERATE GRADE CARD OPTION SELECTED.");
+                System.out.println("Get GRADE CARD OPTION SELECTED.");
                 break;
             case 4:
                 System.out.println("ADD OR REMOVE COURSES OPTION SELECTED.");
