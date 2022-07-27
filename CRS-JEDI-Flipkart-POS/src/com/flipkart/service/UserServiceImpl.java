@@ -13,6 +13,6 @@ public class UserServiceImpl implements UserInterface{
 
     @Override
     public boolean verifyCredentials(String username, String password, String role) {
-        return false;
+        return true;
     }
 }
