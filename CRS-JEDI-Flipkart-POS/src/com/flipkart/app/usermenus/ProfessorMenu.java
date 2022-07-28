@@ -1,5 +1,6 @@
 package com.flipkart.app.usermenus;
 
+import com.flipkart.app.CRSApplication;
 import com.flipkart.dao.DummyData;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorServiceImpl;
@@ -20,6 +21,7 @@ public class ProfessorMenu implements UserMenu {
         System.out.println("1. Add Grades");
         System.out.println("2. View Enrolled Students");
         System.out.println("3. Register for courses");
+        System.out.println("4. Logout");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
         ProfessorInterface professor = new ProfessorServiceImpl(data);
@@ -35,8 +37,13 @@ public class ProfessorMenu implements UserMenu {
             case 3:
                 System.out.println("REGISTER FOR COURSES OPTION SELECTED.");
                 break;
+            case 4:
+                CRSApplication.showMenu(data);
+                break;
             default:
                 System.out.println("Please select a valid option.");
         }
+
+        showMenu();
     }
 }

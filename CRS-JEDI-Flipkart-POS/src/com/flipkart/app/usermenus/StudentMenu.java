@@ -1,5 +1,6 @@
 package com.flipkart.app.usermenus;
 
+import com.flipkart.app.CRSApplication;
 import com.flipkart.dao.DummyData;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
@@ -20,23 +21,23 @@ public class StudentMenu implements UserMenu {
         System.out.println("4. View Grade Card");
         System.out.println("5. View Selected Courses");
         System.out.println("6. Pay Fee");
+        System.out.println("7. Log out");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
         StudentInterface student = new StudentServiceImpl(data);
         int option = scanner.nextInt();
         switch(option) {
             case 1:
-                System.out.println("ADD COURSE OPTION SELECTED.");
                 student.addCourse();
                 break;
             case 2:
-                System.out.println("DROP COURSE OPTION SELECTED.");
+                student.dropCourse();
                 break;
             case 3:
                 student.viewCatalog();
                 break;
             case 4:
-                System.out.println("VIEW GRADE CARD OPTION SELECTED.");
+                student.viewGrades();
                 break;
             case 5:
                 student.viewSelectedCourses();
@@ -44,8 +45,12 @@ public class StudentMenu implements UserMenu {
             case 6:
                 System.out.println("PAY FEE OPTION SELECTED.");
                 break;
+            case 7:
+                System.out.println("Successfully logged out!!!");
+                CRSApplication.showMenu(data);
             default:
                 System.out.println("Please select a valid option.");
         }
+        showMenu();
     }
 }

@@ -1,5 +1,6 @@
 package com.flipkart.app.usermenus;
 
+import com.flipkart.app.CRSApplication;
 import com.flipkart.dao.DummyData;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
@@ -17,14 +18,16 @@ public class AdminMenu implements UserMenu {
         System.out.println("1. Verify Students");
         System.out.println("2. Add Professor");
         System.out.println("3. Get Grade Card");
-        System.out.println("4. Add or remove courses");
+        System.out.println("4. Add courses");
+        System.out.println("5. Remove courses");
+        System.out.println("6. Logout");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
         AdminInterface admin = new AdminServiceImpl(data);
         int option = scanner.nextInt();
         switch(option) {
             case 1:
-                System.out.println("VERIFY STUDENTS OPTION SELECTED.");
+                admin.verifyStudent();
                 break;
             case 2:
                 System.out.println("ADD PROFESSOR OPTION SELECTED.");
@@ -33,10 +36,17 @@ public class AdminMenu implements UserMenu {
                 System.out.println("Get GRADE CARD OPTION SELECTED.");
                 break;
             case 4:
-                System.out.println("ADD OR REMOVE COURSES OPTION SELECTED.");
+                admin.addCourse();
+                break;
+            case 5:
+                admin.removeCourse();
+                break;
+            case 6:
+                CRSApplication.showMenu(data);
                 break;
             default:
                 System.out.println("Please select a valid option.");
         }
+        showMenu();
     }
 }
