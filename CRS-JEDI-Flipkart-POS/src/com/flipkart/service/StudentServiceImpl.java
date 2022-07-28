@@ -5,6 +5,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.dao.DummyData;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class StudentServiceImpl implements StudentInterface{
@@ -28,12 +29,25 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void addCourse() {
-        viewCatalog();
+        List<Course> courses = viewCatalog();
+        List<Course> selCourses = viewSelectedCourses();
         System.out.print("Select a course: ");
         Scanner scanner = new Scanner((System.in));
-        int choice = scanner.nextInt();
-        System.out.println("Course "+String.valueOf(choice)+" added successfully!");
+        String choice = scanner.nextLine();
+        boolean courseFound = false;
+//        System.out.println(courses);
+        courses.forEach((course) -> {
+            if(Objects.equals(choice,course.getCourseId())){
+                selCourses.add(course);
+                Catalog sel = new Catalog();
+                sel.courseList = selCourses;
+                data.selectedCourses.put("S101",sel);
+                viewSelectedCourses();
+                System.out.println("Course "+choice+" added successfully!");
 
+            }
+        });
+//        System.out.println("Course not in catalog");
     }
 
     @Override
@@ -46,15 +60,16 @@ public class StudentServiceImpl implements StudentInterface{
     }
 
     @Override
-    public void viewCatalog() {
-        System.out.println("List of select courses: ");
+    public List<Course> viewCatalog() {
+        System.out.println("List of available courses: ");
         List<Course> courses = data.catalog.get(1).courseList;
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
 //        System.out.println(.getCourseId());
+        return courses;
     }
 
     @Override
-    public void viewSelectedCourses() {
+    public List<Course> viewSelectedCourses() {
         System.out.println("List of select courses: ");
         List<Course> courses = data.selectedCourses.get("S101").courseList;
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
@@ -63,6 +78,7 @@ public class StudentServiceImpl implements StudentInterface{
         Catalog cat = new Catalog();
         cat.setCourseList(courses);
         data.selectedCourses.put("S101",cat);
+        return courses;
     }
 
     @Override
