@@ -1,5 +1,6 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
 import com.flipkart.dao.DummyData;
 
@@ -30,6 +31,7 @@ public class StudentServiceImpl implements StudentInterface{
         Scanner scanner = new Scanner((System.in));
         int choice = scanner.nextInt();
         System.out.println("Course "+String.valueOf(choice)+" added successfully!");
+
     }
 
     @Override
@@ -60,6 +62,9 @@ public class StudentServiceImpl implements StudentInterface{
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
 //        System.out.println(.getCourseId());
 //        System.out.println(dummy.selectedCourses.get("S101").courseList.get(0).getCourseName());
+        Catalog cat = new Catalog();
+        cat.setCourseList(courses);
+        dummy.selectedCourses.put("S101",cat);
     }
 
     @Override

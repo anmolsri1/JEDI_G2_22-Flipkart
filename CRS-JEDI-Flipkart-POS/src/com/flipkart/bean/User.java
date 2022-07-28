@@ -12,7 +12,7 @@ public abstract class User {
 
     public static String[] roleMap= {"", "STUDENT", "PROFESSOR", "ADMIN"};
 
-    public User(String userId, String name, String password, String address, int role, Gender gender) {
+    public User(String userId, String name, String password, String address, int role, String gender) {
         this.userId = userId;
         this.name = name;
         this.password = password;
