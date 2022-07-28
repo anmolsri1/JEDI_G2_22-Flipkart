@@ -1,8 +1,14 @@
 package com.flipkart.app.usermenus;
 
+import com.flipkart.dao.DummyData;
+
 import java.util.Scanner;
 
 public class AdminMenu implements UserMenu {
+    DummyData data;
+    public AdminMenu(DummyData data) {
+        this.data = data;
+    }
     @Override
     public void showMenu() {
         System.out.println("----------Admin Menu----------");
