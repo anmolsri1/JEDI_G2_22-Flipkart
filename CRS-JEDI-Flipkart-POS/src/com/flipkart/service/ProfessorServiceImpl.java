@@ -12,8 +12,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
     }
     @Override
     public void viewEnrolledStudents() {
-        DummyData dummy = new DummyData();
-        List<Student> students = dummy.enrolledStudents.get("C101");
+        List<Student> students = data.enrolledStudents.get("C101");
         students.forEach((student) -> System.out.println("ID: " + student.getStudentId() + "\tName: " + student.getName()));
     }
 

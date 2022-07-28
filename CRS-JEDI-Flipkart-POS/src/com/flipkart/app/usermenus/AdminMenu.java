@@ -1,6 +1,8 @@
 package com.flipkart.app.usermenus;
 
 import com.flipkart.dao.DummyData;
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminServiceImpl;
 
 import java.util.Scanner;
 
@@ -18,6 +20,7 @@ public class AdminMenu implements UserMenu {
         System.out.println("4. Add or remove courses");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
+        AdminInterface admin = new AdminServiceImpl(data);
         int option = scanner.nextInt();
         switch(option) {
             case 1:
