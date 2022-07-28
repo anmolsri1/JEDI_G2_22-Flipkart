@@ -9,6 +9,7 @@ import java.util.*;
 
 public class DummyData {
     public HashMap<String, Pair<String,String>> mapGrades;
+    public HashMap<String, String> profCourses;
     public  HashMap<Integer, Catalog> catalog;
     public  HashMap<String, Catalog> selectedCourses;
     public HashMap<String, List<Student>> enrolledStudents;
@@ -20,7 +21,10 @@ public class DummyData {
     public DummyData() {
         Pair<String, String> pair = new Pair<String, String>("C101","A");
         mapGrades = new HashMap<String, Pair<String, String>>();
+        profCourses = new HashMap<String, String>();
 //        pair.put("C101", new String("A"));
+        profCourses.put("P101", "C101");
+        profCourses.put("P102", "C102");
         mapGrades.put("S101",pair);
         mapGrades.put("S101",new Pair <String, String> ("C102", "A"));
         mapGrades.put("S101",new Pair <String, String> ("C103", "A"));
