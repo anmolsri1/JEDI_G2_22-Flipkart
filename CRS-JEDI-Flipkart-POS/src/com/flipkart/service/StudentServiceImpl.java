@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentServiceImpl implements StudentInterface{
+    DummyData data;
+    public StudentServiceImpl(DummyData data) {
+        this.data = data;
+    }
     @Override
     public void register() {
 

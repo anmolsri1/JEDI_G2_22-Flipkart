@@ -1,8 +1,14 @@
 package com.flipkart.app.usermenus;
 
+import com.flipkart.dao.DummyData;
+
 import java.util.Scanner;
 
 public class ProfessorMenu implements UserMenu {
+    DummyData data;
+    public ProfessorMenu(DummyData data) {
+        this.data = data;
+    }
 
     @Override
     public void showMenu() {

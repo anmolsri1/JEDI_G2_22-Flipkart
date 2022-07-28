@@ -1,12 +1,16 @@
 package com.flipkart.app.usermenus;
 
+import com.flipkart.dao.DummyData;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 
 import java.util.Scanner;
 
 public class StudentMenu implements UserMenu {
-
+    DummyData data;
+    public StudentMenu(DummyData data) {
+        this.data = data;
+    }
     @Override
     public void showMenu() {
         System.out.println("----------Student Menu----------");
@@ -18,7 +22,7 @@ public class StudentMenu implements UserMenu {
         System.out.println("6. Pay Fee");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
-        StudentInterface student = new StudentServiceImpl();
+        StudentInterface student = new StudentServiceImpl(data);
         int option = scanner.nextInt();
         switch(option) {
             case 1:
