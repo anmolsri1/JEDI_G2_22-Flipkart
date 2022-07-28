@@ -29,7 +29,7 @@ public class StudentMenu implements UserMenu {
                 System.out.println("DROP COURSE OPTION SELECTED.");
                 break;
             case 3:
-                System.out.println("VIEW CATALOG OPTION SELECTED.");
+                student.viewCatalog();
                 break;
             case 4:
                 System.out.println("VIEW GRADE CARD OPTION SELECTED.");

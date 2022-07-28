@@ -1,7 +1,9 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
 import com.flipkart.dao.DummyData;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentServiceImpl implements StudentInterface{
@@ -23,8 +25,6 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void addCourse() {
-//        DummyData dummy = new DummyData();
-//        dummy.init();
         viewCatalog();
         System.out.print("Select a course: ");
         Scanner scanner = new Scanner((System.in));
@@ -45,20 +45,21 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void viewCatalog() {
-//        DummyData dummy = new DummyData();
-//        dummy.init();
-        System.out.println("List of available courses: ");
-        for(int i=1;i<=10;i++)
-            System.out.println(String.valueOf(i)+". "+"Subject "+String.valueOf(i));
+        DummyData dummy = new DummyData();
+        System.out.println("List of select courses: ");
+        List<Course> courses = dummy.catalog.get(1).courseList;
+        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
+//        System.out.println(.getCourseId());
     }
 
     @Override
     public void viewSelectedCourses() {
-        DummyData.init();
+        DummyData dummy = new DummyData();
         System.out.println("List of select courses: ");
-//        for(int i=1;i<=10;i++)
-//            System.out.println(String.valueOf(i)+". "+"Subject "+String.valueOf(i));
-        System.out.println(DummyData.selectedCourses.get("S101"));
+        List<Course> courses = dummy.selectedCourses.get("S101").courseList;
+        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
+//        System.out.println(.getCourseId());
+//        System.out.println(dummy.selectedCourses.get("S101").courseList.get(0).getCourseName());
     }
 
     @Override
