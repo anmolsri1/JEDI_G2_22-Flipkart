@@ -5,10 +5,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DummyData {
     public HashMap<String, Pair<String,String>> mapGrades;
@@ -18,6 +15,7 @@ public class DummyData {
     public List<Student> registeredStudents;
 
     public List<Student> approvalStudent;
+    public HashSet<String> feePaid;
 
     public DummyData() {
         Pair<String, String> pair = new Pair<String, String>("C101","A");
@@ -65,7 +63,10 @@ public class DummyData {
         registeredStudents.add(new Student("S101","Abc","","",1,"M","S101",1));
         registeredStudents.add(new Student("S102","Bcd","","",1,"M","S102",1));
         registeredStudents.add(new Student("S103","Cde","","",1,"F","S103",1));
-        registeredStudents.add(new Student("S104","Dfef","","",1,"F","S104",1));    }
+        registeredStudents.add(new Student("S104","Dfef","","",1,"F","S104",1));
+
+        feePaid = new HashSet<String>();
+    }
 
     public static void init() {
 

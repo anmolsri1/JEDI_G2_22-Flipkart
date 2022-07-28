@@ -43,7 +43,7 @@ public class StudentMenu implements UserMenu {
                 student.viewSelectedCourses();
                 break;
             case 6:
-                System.out.println("PAY FEE OPTION SELECTED.");
+                student.payFee();1
                 break;
             case 7:
                 System.out.println("Successfully logged out!!!");
