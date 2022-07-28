@@ -8,7 +8,7 @@ public abstract class User {
     private String password;
     private String address;
     private int role;
-    private Gender gender;
+    private String gender;
 
     public static String[] roleMap= {"", "STUDENT", "PROFESSOR", "ADMIN"};
 
@@ -18,7 +18,7 @@ public abstract class User {
         this.password = password;
         this.address = address;
         this.role = role;
-        this.gender = gender;
+        this.gender = "";
     }
 
     public User() {
@@ -65,11 +65,11 @@ public abstract class User {
         this.role = role;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 }
