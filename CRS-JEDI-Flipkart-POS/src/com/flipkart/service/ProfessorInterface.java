@@ -5,7 +5,7 @@ import com.flipkart.bean.Student;
 import java.util.List;
 
 public interface ProfessorInterface {
-    List<Student> viewEnrolledStudents();
+    void viewEnrolledStudents();
     void addGrade();
     void registerForCourses();
 }

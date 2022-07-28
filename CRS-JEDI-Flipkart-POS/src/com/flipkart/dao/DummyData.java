@@ -17,7 +17,7 @@ public class DummyData {
     public HashMap<String, List<Student>> enrolledStudents;
 
     public DummyData() {
-        Pair<String, String> pair = new Pair<String,String>("C101","A");
+        Pair<String, String> pair = new Pair<String, String>("C101","A");
         mapGrades = new HashMap<String, Pair<String, String>>();
 //        pair.put("C101", new String("A"));
         mapGrades.put("S101",pair);

@@ -18,7 +18,7 @@ public abstract class User {
         this.password = password;
         this.address = address;
         this.role = role;
-        this.gender = "";
+        this.gender = gender;
     }
 
     public User() {
