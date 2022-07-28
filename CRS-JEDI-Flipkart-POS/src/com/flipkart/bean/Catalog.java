@@ -11,6 +11,6 @@ public class Catalog {
         this.courseList = courseList;
     }
 
-    private List<Course> courseList;
+    public List<Course> courseList;
 
 }

@@ -35,7 +35,7 @@ public class StudentMenu implements UserMenu {
                 System.out.println("VIEW GRADE CARD OPTION SELECTED.");
                 break;
             case 5:
-                System.out.println("View Selected Courses");
+                student.viewSelectedCourses();
                 break;
             case 6:
                 System.out.println("PAY FEE OPTION SELECTED.");
