@@ -36,6 +36,7 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void viewGrades() {
+        // use regcourses table to get grades for courses for SID and use courses table to get course names
         System.out.println("Subject 1: A");
         System.out.println("Subject 2: A");
         System.out.println("Subject 3: A");
@@ -73,6 +74,7 @@ public class StudentServiceImpl implements StudentInterface{
         Scanner scanner = new Scanner((System.in));
         String choice = scanner.nextLine();
         List<Course> updateSelCourses = new ArrayList<Course>();
+//        Drop Course call function
         selCourses.forEach((selCourse) -> {
             if(!Objects.equals(selCourse.getCourseId(),choice)) {
                 updateSelCourses.add(selCourse);
@@ -89,6 +91,7 @@ public class StudentServiceImpl implements StudentInterface{
     public List<Course> viewCatalog() {
         System.out.println("List of available courses: ");
         List<Course> courses = data.catalog.get(1).courseList;
+//        List<Course> courses = Catalog.getCourseList();
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
         return courses;
     }
@@ -97,10 +100,9 @@ public class StudentServiceImpl implements StudentInterface{
     public List<Course> viewSelectedCourses() {
         System.out.println("List of select courses: ");
         List<Course> courses = data.selectedCourses.get("S101").courseList;
+//        List<Course> courses = Catalog.getCourseList(studentID);
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
-        Catalog cat = new Catalog();
-        cat.setCourseList(courses);
-        data.selectedCourses.put("S101",cat);
+
         return courses;
     }
 

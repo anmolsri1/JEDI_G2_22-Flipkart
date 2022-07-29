@@ -15,7 +15,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
     }
     @Override
     public void viewEnrolledStudents() {
-        List<Student> students = data.enrolledStudents.get("C101");
+        List<Student> students = data.enrolledStudents.get("C101");// join professor and regcourses on CID to get the list of students
         students.forEach((student) -> System.out.println("ID: " + student.getStudentId() + "\tName: " + student.getName()));
     }
 
@@ -28,7 +28,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         String course_id = sc.nextLine();
         System.out.println("Please enter Grade: ");
         String grade = sc.nextLine();
-        data.mapGrades.put(student_id, new Pair<String, String>(course_id, grade));
+        data.mapGrades.put(student_id, new Pair<String, String>(course_id, grade)); // change this to add/update grade in registered courses table using SID and CID.
     }
 
     @Override
@@ -36,6 +36,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter Course ID: ");
         String course_id = sc.nextLine();
-        data.profCourses.put("P101", course_id);
+        data.profCourses.put("P101", course_id); //Change This line
+        System.out.println("Successfully registered for the course.");
     }
 }
