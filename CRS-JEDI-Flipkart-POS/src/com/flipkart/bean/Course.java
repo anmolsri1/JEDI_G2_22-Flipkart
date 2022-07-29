@@ -3,7 +3,7 @@ package com.flipkart.bean;
 public class Course {
     private String courseId;
     private String courseName;
-    private boolean isOffered;
+    private int seats;
     private String instructor;
 
     public String getCourseId() {
@@ -22,12 +22,12 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public boolean isOffered() {
-        return isOffered;
+    public int getSeats() {
+        return seats;
     }
 
-    public void setOffered(boolean offered) {
-        isOffered = offered;
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
     public String getInstructor() {
@@ -38,10 +38,10 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public Course(String courseId, String courseName, boolean isOffered, String instructor) {
+    public Course(String courseId, String courseName, int seats, String instructor) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.isOffered = isOffered;
+        this.seats = seats;
         this.instructor = instructor;
     }
 }

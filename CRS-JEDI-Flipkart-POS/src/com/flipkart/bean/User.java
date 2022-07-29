@@ -1,18 +1,19 @@
 package com.flipkart.bean;
 
 import com.flipkart.constant.Gender;
+import com.flipkart.constant.Role;
 
 public abstract class User {
     private String userId;
     private String name;
     private String password;
     private String address;
-    private int role;
-    private String gender;
+    private Role role;
+    private Gender gender;
 
     public static String[] roleMap= {"", "STUDENT", "PROFESSOR", "ADMIN"};
 
-    public User(String userId, String name, String password, String address, int role, String gender) {
+    public User(String userId, String name, String password, String address, Role role, Gender gender) {
         this.userId = userId;
         this.name = name;
         this.password = password;
@@ -57,19 +58,19 @@ public abstract class User {
         this.address = address;
     }
 
-    public int getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 }
