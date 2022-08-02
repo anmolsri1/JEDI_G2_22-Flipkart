@@ -30,10 +30,10 @@ public class AdminMenu implements UserMenu {
                 admin.verifyStudent();
                 break;
             case 2:
-                System.out.println("ADD PROFESSOR OPTION SELECTED.");
+                admin.addProfessor();
                 break;
             case 3:
-                System.out.println("Get GRADE CARD OPTION SELECTED.");
+                admin.generateGradeCard()
                 break;
             case 4:
                 admin.addCourse();
