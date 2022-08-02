@@ -5,7 +5,7 @@ import com.flipkart.bean.GradeCard;
 public interface AdminInterface {
     void verifyStudent();
     void addProfessor();
-    GradeCard generateGradeCard();
+    void generateGradeCard();
     void addCourse();
     void removeCourse();
 }

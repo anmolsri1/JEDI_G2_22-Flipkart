@@ -1,9 +1,6 @@
 package com.flipkart.service;
 
-import com.flipkart.bean.Catalog;
-import com.flipkart.bean.Course;
-import com.flipkart.bean.GradeCard;
-import com.flipkart.bean.Student;
+import com.flipkart.bean.*;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
 import com.flipkart.dao.DummyData;
@@ -33,12 +30,35 @@ public class AdminServiceImpl implements AdminInterface{
 
     @Override
     public void addProfessor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+        System.out.print("Enter address: ");
+        String address = scanner.nextLine();
+        System.out.print("Enter gender: ");
+        String gender = scanner.nextLine();
+        System.out.print("Enter department: ");
+        String department = scanner.nextLine();
+        System.out.print("Enter position: ");
+        String position = scanner.nextLine();
 
+        Professor professor = new Professor(1, name, password, address, "professor", gender, 1, department, position);
+        AdminDaoInterface admin = new AdminDaoImpl();
+        admin.addProfessor(professor);
     }
 
     @Override
-    public GradeCard generateGradeCard() {
-
+    public void generateGradeCard() {
+        AdminDaoInterface admin = new AdminDaoImpl();
+        System.out.print("Enter student: ");
+        Scanner scanner = new Scanner(System.in);
+        int studentId = scanner.nextInt();
+        List<RegisteredCourse> courses = admin.generateGradeCard(studentId);
+        courses.forEach((course) -> {
+            System.out.println(course.getCourseId()+"\t"+course.getGrade());
+        });
     }
 
     @Override
