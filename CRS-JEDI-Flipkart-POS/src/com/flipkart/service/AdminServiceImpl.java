@@ -63,7 +63,7 @@ public class AdminServiceImpl implements AdminInterface{
         scanner.nextLine();
         List<RegisteredCourse> courses = admin.generateGradeCard(studentId);
         courses.forEach((course) -> {
-            System.out.println(course.getCourseId()+"\t"+course.getGrade());
+            System.out.println(course.getCourseId()+"\t"+course.getGrade().getGrade());
         });
     }
 

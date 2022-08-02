@@ -279,7 +279,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<RegisteredCourse> CoursesOfStudent = new ArrayList();
 
         try {
-            String sql = "select courseId, courseName, professorId, seats, studentId, grade, semester from catalogue inner join registeredCourse on course.courseId = registeredCourse.courseId where registeredCourse.studentId = ?";
+            String sql = "select catalogue.courseId, courseName, professorId, seats, studentId, grade, semester from catalogue inner join registeredCourse on catalogue.courseId = registeredCourse.courseId where registeredCourse.studentId = ?";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setInt(1, studentId);
             ResultSet resultSet = this.statement.executeQuery();
@@ -291,13 +291,13 @@ public class AdminDaoImpl implements AdminDaoInterface {
                 temp.setStudentId(studentId);
                 temp.setGrade(new Grade(resultSet.getString(6)));
                 CoursesOfStudent.add(temp);
-                System.out.println("Graded");
             }
 
             String sql1 = "update student set isReportGenerated = 1 where studentId = ?";
             this.statement = this.connection.prepareStatement(sql1);
             this.statement.setInt(1, studentId);
             int var9 = this.statement.executeUpdate();
+            System.out.println("Graded");
         } catch (SQLException var7) {
             System.out.println("Error: " + var7.getMessage());
         }
