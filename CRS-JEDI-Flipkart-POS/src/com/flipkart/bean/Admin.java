@@ -3,11 +3,11 @@ package com.flipkart.bean;
 import java.util.Date;
 
 public class Admin extends User{
-    private String adminId;
+    private int adminId;
     private Date dateOfJoining;
     private Catalog[] catalogList;
 
-    public String getAdminId() {
+    public int getAdminId() {
         return adminId;
     }
 

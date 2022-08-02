@@ -20,21 +20,15 @@ public class AdminServiceImpl implements AdminInterface{
     }
     @Override
     public void verifyStudent() {
-        data.approvalStudent.forEach(student -> {
+        AdminDaoInterface admin = new AdminDaoImpl();
+        List<Student> studentList = admin.viewPendingAdmissions();
+        studentList.forEach(student -> {
             System.out.println(student.getStudentId()+"\t"+student.getName()+" "+student.getAddress()+" "+student.getGender()+" "+student.getSemester());
         });
         System.out.println("Enter a student ID to approve: ");
         Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
-        List<Student> updatedList= new ArrayList<Student>();
-        data.approvalStudent.forEach(student -> {
-            if(!Objects.equals(id,student.getStudentId())) {
-                updatedList.add(student);
-                return;
-            }
-            else data.registeredStudents.add(student);
-        });
-        data.approvalStudent = updatedList;
+        int studentId = scanner.nextInt();
+        admin.approveStudent(studentId);
     }
 
     @Override
@@ -44,7 +38,6 @@ public class AdminServiceImpl implements AdminInterface{
 
     @Override
     public GradeCard generateGradeCard() {
-
 
     }
 
@@ -65,24 +58,13 @@ public class AdminServiceImpl implements AdminInterface{
 
     @Override
     public void removeCourse() {
-        List<Course> courses = data.catalog.get(1).courseList;
+        AdminDaoInterface admin = new AdminDaoImpl();
+        List<Course> courses = admin.viewCourses();
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
         System.out.print("Choose a course to remove: ");
         Scanner scanner = new Scanner((System.in));
         String courseId = scanner.nextLine();
-        AdminDaoInterface admin = new AdminDaoImpl();
         admin.removeCourse(courseId);
-//        List<Course> updateCourses = new ArrayList<Course>();
-//        courses.forEach((course) -> {
-//            if(!Objects.equals(course.getCourseId(),choice)) {
-//                updateCourses.add(course);
-//            }
-//        });
-//        Catalog cat = new Catalog();
-//        cat.courseList = updateCourses;
-//        data.catalog.put(1,cat);
-//        courses = data.catalog.get(1).courseList;
-//        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
-//        System.out.println("Course "+choice+" removed successfully!");
+
     }
 }
