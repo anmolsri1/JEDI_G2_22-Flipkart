@@ -96,23 +96,15 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void payFee(int studentId) {
-//        if(data.feePaid.contains("S101")) {
-//            System.out.println("You have already paid the fee.");
-//        }
-//        else {
-//            int numCourses = data.selectedCourses.get("S101").courseList.size();
-//            System.out.println("Fee due: "+numCourses*500);
-//            Scanner scanner = new Scanner(System.in);
-//            System.out.println("Select your preferred payment method: \n1. UPI \n2. Cash\n3. Netbanking");
-//            int choice = scanner.nextInt();
-//            scanner.nextLine();
-//            if(choice==2){
-//                System.out.println("You may deposit your fee at the accounts department.");
-//            }
-//            else{
-//                System.out.println("Proceed to the payment gateway and do not clase this window. \n\n\nThank you fo making the payment");
-//                data.feePaid.add("S101");
-//            }
-//        }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select your preferred payment method: \n1. UPI \n2. Cash\n3. Netbanking");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        if(choice==2){
+            System.out.println("You may deposit your fee at the accounts department.");
+        }
+        else{
+            System.out.println("Proceed to the payment gateway and do not clase this window. \n\n\nThank you fo making the payment");
+        }
     }
 }
