@@ -9,11 +9,11 @@ public class DBUtils {
         if (connection != null) {
         	try {
         		if (connection.isClosed()) {
-                	System.out.println("Connection closed!");
+//                	System.out.println("Connection closed!");
                 	connection = null;
                 	return getConnection();
                 } else {
-                	System.out.println("Connection working!");
+//                	System.out.println("Connection working!");
                 	return connection;
                 }
         	} catch (SQLException e) {
@@ -24,7 +24,7 @@ public class DBUtils {
             try {
                 String url = "jdbc:mysql://localhost:3306/CRSDATABASE";
                 String user = "root";
-                String password = "postgres";
+                String password = "Blue_178778";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException | SQLException e) {

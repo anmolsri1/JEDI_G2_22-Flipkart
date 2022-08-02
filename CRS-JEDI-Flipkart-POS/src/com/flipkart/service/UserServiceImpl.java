@@ -37,9 +37,9 @@ public class UserServiceImpl implements UserInterface{
         Role role = null;
         if (auth) {
             role = Role.intToName(user.getRole(username));
-            System.out.println(username);
-            System.out.println(user.getRole(username));
-            System.out.println(role.toString());
+//            System.out.println(username);
+//            System.out.println(user.getRole(username));
+//            System.out.println(role.toString());
             ProfessorDaoInterface professor = new ProfessorDaoImpl();
             System.out.println("Welcome "+professor.getProfessorById(username) + "!!!");
             if(role==STUDENT) {
