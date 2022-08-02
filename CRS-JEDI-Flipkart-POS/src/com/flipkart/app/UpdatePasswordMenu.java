@@ -1,7 +1,12 @@
 package com.flipkart.app;
 
+import com.flipkart.service.UserInterface;
+import com.flipkart.service.UserServiceImpl;
+
 public class UpdatePasswordMenu {
     public static void showUpdatePasswordMenu() {
-        System.out.println("this is the update Password menu.");
+
+        UserInterface user = new UserServiceImpl();
+        user.updatePassword();
     }
 }
