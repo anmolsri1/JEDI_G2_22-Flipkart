@@ -1,5 +1,6 @@
 package com.flipkart.service;
 
+import com.flipkart.app.CRSApplication;
 import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
@@ -9,7 +10,7 @@ import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
 import com.flipkart.dao.StudentDaoImpl;
 import com.flipkart.dao.StudentDaoInterface;
-import com.flipkart.exception.StudentNotRegisteredException;
+import com.flipkart.exception.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class StudentServiceImpl implements StudentInterface{
 //    DummyData data;
     public StudentServiceImpl() {}
     @Override
-    public void register() throws StudentNotRegisteredException {
+    public void register() throws StudentNotRegisteredException, UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name: ");
         String name = scanner.nextLine();
@@ -40,7 +41,7 @@ public class StudentServiceImpl implements StudentInterface{
         StudentDaoInterface student = new StudentDaoImpl();
         student.addStudent(new Student(id,name,password, address, Role.stringToName("student"), Gender.stringToGender(gender), id, semester, "CSE", false, false));
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
-//        CRSApplication.showMenu(data);
+        CRSApplication.showMenu();
     }
 
     @Override

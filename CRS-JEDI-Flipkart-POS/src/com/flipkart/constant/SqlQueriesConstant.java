@@ -8,8 +8,8 @@ public class SqlQueriesConstant {
     public static final String APPROVE_STUDENT_QUERY = "update Student set isApproved = 1 where studentId = ?";
     public static final String ADD_USER_QUERY = "insert into user(id, name, password, type, gender, address) values (?, ?, ?, ?, ?, ?)";
     public static final String ADD_PROFESSOR_QUERY = "insert into Professor(professorId, department, designation) values (?, ?, ?)";
-    public static final String ASSIGN_COURSE_QUERY = "update catalog set professorId = ? where courseId = ?";
-    public static final String VIEW_COURSE_QUERY = "select courseId, courseName, professorId from catalog";
+    public static final String ASSIGN_COURSE_QUERY = "update catalogue set professorId = ? where courseId = ?";
+    public static final String VIEW_COURSE_QUERY = "select courseId, courseName, professorId from catalogue";
     public static final String VIEW_PROFESSOR_QUERY = "select userId, name, gender, department, designation, address from Professor natural join User where userId = professorId";
     public static final String SET_GENERATED_REPORT_CARD_TRUE = "update student set isReportGenerated = 1 where studentId = ?";
     public static final String GET_GENERATED_REPORT_CARD_TRUE = "select isReportGenerated from student where studentId = ?";
@@ -42,14 +42,14 @@ public class SqlQueriesConstant {
     public static final String ADD_REGISTERED_COURSE = "insert into registeredCourse (studentId, courseId) VALUES(?,?)";
     public static final String DROP_REGISTERED_COURSE = "delete from registeredCourse where studentId = ? and courseId = ?";
     public static final String GET_COURSE_ID_FROM_STUDENT_ID = "select courseId from registeredCourse where studentId = ?";
-    public static final String GET_COURSES_BY_ID = "select * from course where courseId = ?";
+    public static final String GET_COURSES_BY_ID = "select * from catalogue where courseId = ?";
     //ProfessorDao queries
 
     public static final String UPDATE_PASSWORD="update user set password=? where id = ? ";
     public static final String VERIFY_CREDENTIALS="select password from user where id = ?";
     public static final String GET_ROLE="select type from user where id = ?;";
-    public static final String GET_COURSES="select * from catalog where professorId=?";
-    public static final String GET_ENROLLED_STUDENTS="select catalog.courseId,catalog.courseName,registeredCourse.studentId from course inner join registeredCourse on course.courseId = registeredCourse.courseId where catalog.professorId = ? order by catalog.courseId";
+    public static final String GET_COURSES="select * from catalogue where professorId=?";
+    public static final String GET_ENROLLED_STUDENTS="select catalogue.courseId,catalogue.courseName,registeredCourse.studentId from course inner join registeredCourse on course.courseId = registeredCourse.courseId where catalogue.professorId = ? order by catalogue.courseId";
     public static final String ADD_GRADE="update registeredCourse set Grade=? where courseId=? and studentId=?";
     public static final String GET_PROF_NAME = "select name from user where id = ?";
     public static final String REGISTER_FOR_COURSE = "update catalogue set professorId = ? where courseId = ?";
