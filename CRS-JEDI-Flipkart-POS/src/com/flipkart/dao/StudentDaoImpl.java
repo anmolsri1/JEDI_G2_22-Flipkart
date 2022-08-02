@@ -98,11 +98,11 @@ public class StudentDaoImpl implements StudentDaoInterface {
      * @return Student Id
      */
     @Override
-    public String getStudentId(String userId) {
+    public String getStudentId(int userId) {
         Connection connection=DBUtils.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_STUDENT_ID);
-            statement.setString(1, userId);
+            statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
 
             if(rs.next())
@@ -125,11 +125,11 @@ public class StudentDaoImpl implements StudentDaoInterface {
      * @return boolean indicating if student is approved
      */
     @Override
-    public boolean isApproved(String studentId) {
+    public boolean isApproved(int studentId) {
         Connection connection=DBUtils.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.IS_APPROVED);
-            statement.setString(1, studentId);
+            statement.setInt(1, studentId);
             ResultSet rs = statement.executeQuery();
 
             if(rs.next())
