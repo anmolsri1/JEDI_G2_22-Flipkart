@@ -8,10 +8,12 @@ import com.flipkart.service.AdminServiceImpl;
 import java.util.Scanner;
 
 public class AdminMenu implements UserMenu {
+    int userId;
     public AdminMenu(int userId) {
+        this.userId = userId;
     }
     @Override
-    public void showMenu() throws StudentNotFoundForApprovalException, UserIdAlreadyInUseException, ProfessorNotAddedException, CourseExistsAlreadyException, CourseNotDeletedException, CourseNotFoundException {
+    public void showMenu() throws StudentNotFoundForApprovalException, UserIdAlreadyInUseException, ProfessorNotAddedException, CourseExistsAlreadyException, CourseNotDeletedException, CourseNotFoundException, UserNotFoundException {
         System.out.println("----------Admin Menu----------");
         System.out.println("1. Verify Students");
         System.out.println("2. Add Professor");
