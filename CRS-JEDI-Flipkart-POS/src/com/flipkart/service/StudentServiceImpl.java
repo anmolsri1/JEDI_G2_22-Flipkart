@@ -4,6 +4,8 @@ import com.flipkart.app.CRSApplication;
 import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
+import com.flipkart.dao.AdminDaoImpl;
+import com.flipkart.dao.AdminDaoInterface;
 import com.flipkart.dao.DummyData;
 
 import java.util.ArrayList;
@@ -74,7 +76,7 @@ public class StudentServiceImpl implements StudentInterface{
         Scanner scanner = new Scanner((System.in));
         String choice = scanner.nextLine();
         List<Course> updateSelCourses = new ArrayList<Course>();
-//        Drop Course call function
+//        Drop Course call function. replace the lines below.
         selCourses.forEach((selCourse) -> {
             if(!Objects.equals(selCourse.getCourseId(),choice)) {
                 updateSelCourses.add(selCourse);
@@ -90,8 +92,10 @@ public class StudentServiceImpl implements StudentInterface{
     @Override
     public List<Course> viewCatalog() {
         System.out.println("List of available courses: ");
-        List<Course> courses = data.catalog.get(1).courseList;
+//        List<Course> courses = data.catalog.get(1).courseList;
 //        List<Course> courses = Catalog.getCourseList();
+        AdminDaoInterface admin = new AdminDaoImpl();
+        List<Course> courses = admin.viewCourses();
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
         return courses;
     }

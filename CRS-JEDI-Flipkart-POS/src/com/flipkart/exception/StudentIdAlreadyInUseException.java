@@ -1,17 +1,17 @@
 package com.flipkart.exception;
 
 public class StudentIdAlreadyInUseException extends Exception {
-    private String StudentId;
+    private String studentId;
 
     public StudentIdAlreadyInUseException(String id) {
-        this.StudentId = id;
+        this.studentId = id;
     }
 
     public String getUserId() {
-        return this.StudentId;
+        return this.studentId;
     }
 
     public String getMessage() {
-        return "userId: " + this.StudentId + " is already in use.";
+        return "userId: " + this.studentId + " is already in use.";
     }
 }
