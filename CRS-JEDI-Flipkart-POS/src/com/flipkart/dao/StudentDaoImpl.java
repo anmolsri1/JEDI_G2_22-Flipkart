@@ -254,7 +254,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()) {
-                RegisteredCourse course = new RegisteredCourse(rs.getInt(1), rs.getInt(2), rs.getObject(3, Grade.class), rs.getInt(4));
+                RegisteredCourse course = new RegisteredCourse(rs.getInt(1), rs.getInt(2), new Grade(rs.getString(3)), rs.getInt(4));
                 courses.add(course);
             }
         }

@@ -52,7 +52,11 @@ public class StudentServiceImpl implements StudentInterface{
         List<RegisteredCourse> courses = student.viewGrades(studentId);
         courses.forEach((course) -> {
             System.out.println("Course ID"+"\t");
-            System.out.println(course.getCourseId() + "\t" + course.getGrade());
+            if (course.getGrade().getGrade() == null) {
+                System.out.println(course.getCourseId() + "\tNot Graded Yet!");
+            } else {
+                System.out.println(course.getCourseId() + "\t" + course.getGrade().getGrade());
+            }
         });
     }
 
