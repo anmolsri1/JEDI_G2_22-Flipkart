@@ -1,17 +1,17 @@
 package com.flipkart.exception;
 
 public class StudentNotFoundForApprovalException extends Exception {
-    private String StudentId;
+    private String studentId;
 
     public StudentNotFoundForApprovalException(String id) {
-        this.StudentId = id;
+        this.studentId = id;
     }
 
     public String getUserId() {
-        return this.StudentId;
+        return this.studentId;
     }
 
     public String getMessage() {
-        return "StudentId: " + this.StudentId + " not registered!";
+        return "studentId: " + this.studentId + " not registered!";
     }
 }

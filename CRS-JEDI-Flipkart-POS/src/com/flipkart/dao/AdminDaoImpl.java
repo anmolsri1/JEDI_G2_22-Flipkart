@@ -82,11 +82,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
         List<Student> userList = new ArrayList();
         try {
-            String sql = "select user, name, password, role, gender, address, StudentId from student, user where isApproved = 0 and StudentId = userId";
+            String sql = "select id, name, password, type, gender, address, studentId, semester, department, isApproved from student, user where isApproved = 0 and studentId = userId";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
             while(resultSet.next()) {
-                Student user = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getString(7), resultSet.getInt(8));
+                Student user = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getString(7), resultSet.getInt(8), resultSet.getString(9), resultSet.getBoolean(10));
                 userList.add(user);
             }
             System.out.println(userList.size() + " students have pending-approval.");
@@ -96,20 +96,20 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return userList;
     }
 
-    public void approveStudent(int StudentId) throws StudentNotFoundForApprovalException {
+    public void approveStudent(int studentId) throws StudentNotFoundForApprovalException {
         this.statement = null;
 
         try {
-            String sql = "update Student set isApproved = 1 where StudentId = ?";
+            String sql = "update student set isApproved = 1 where studentId = ?";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, StudentId);
+            this.statement.setString(1, studentId);
             int row = this.statement.executeUpdate();
             System.out.println(row + " student approved.");
             if (row == 0) {
-                throw new StudentNotFoundForApprovalException(StudentId);
+                throw new StudentNotFoundForApprovalException(studentId);
             }
 
-            System.out.println("Student with StudentId: " + StudentId + " approved by admin.");
+            System.out.println("Student with studentId: " + studentId + " approved by admin.");
         } catch (SQLException var4) {
             System.out.println("Error: " + var4.getMessage());
         }
@@ -120,7 +120,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
 
         try {
-            String sql = "insert into User(userId, name, password, role, gender, address) values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into user(id, name, password, role, gender, address) values (?, ?, ?, ?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setString(1, user.getUserId());
             this.statement.setString(2, user.getName());
@@ -156,7 +156,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
 
         try {
-            String sql = "insert into Professor(professorId, department, designation) values (?, ?, ?)";
+            String sql = "insert into professor(professorId, department, position) values (?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setString(1, professor.getUserId());
             this.statement.setString(2, professor.getDepartment());
@@ -175,11 +175,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
-    public void assignCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException {
+    public void addCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException {
         this.statement = null;
 
         try {
-            String sql = "update Course set professorId = ? where courseCode = ?";
+            String sql = "insert into catalogue(courseName, professorId, seats) values (?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setString(1, professorId);
             this.statement.setString(2, courseCode);
@@ -202,14 +202,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Course> courseList = new ArrayList();
 
         try {
-            String sql = "select courseCode, courseName, professorId from Course";
+            String sql = "select courseId, courseName, professorId, seats from catalogue";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getString(1), resultSet.getString(2), );
-                course.setCourseName(resultSet.getString(2));
-                course.setInstructor(resultSet.getString(3));
+                Course course = new Course(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
                 courseList.add(course);
             }
 
@@ -226,7 +224,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Professor> professorList = new ArrayList();
 
         try {
-            String sql = "select userId, name, gender, department, designation, address from Professor natural join User where userId = professorId";
+            String sql = "select userId, name, gender, department, designation, address from Professor natural join user where userId = professorId";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
@@ -251,12 +249,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return professorList;
     }
 
-    public void setGeneratedReportCardTrue(String StudentId) {
-        String sql1 = "update student set isReportGenerated = 1 where StudentId = ?";
+    public void setGeneratedReportCardTrue(String studentId) {
+        String sql1 = "update student set isReportGenerated = 1 where studentId = ?";
 
         try {
             this.statement = this.connection.prepareStatement(sql1);
-            this.statement.setString(1, StudentId);
+            this.statement.setString(1, studentId);
             int var3 = this.statement.executeUpdate();
         } catch (SQLException var4) {
             System.out.println("Error: " + var4.getMessage());
@@ -264,28 +262,28 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
     }
 
-    public List<RegisteredCourse> generateGradeCard(String StudentId) {
+    public List<RegisteredCourse> generateGradeCard(String studentId) {
         List<RegisteredCourse> CoursesOfStudent = new ArrayList();
 
         try {
-            String sql = " select * from course inner join registeredcourse on course.courseCode = registeredcourse.courseCode where registeredcourse.StudentId = ?";
+            String sql = " select * from course inner join registeredcourse on course.courseCode = registeredcourse.courseCode where registeredcourse.studentId = ?";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, StudentId);
+            this.statement.setString(1, studentId);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
                 Course course = new Course(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getString(3));
                 RegisteredCourse temp = new RegisteredCourse();
                 temp.setCourseId(course.getCourseId());
-                temp.setStudentId(StudentId);
+                temp.setStudentId(studentId);
                 temp.setGrade(new Grade(resultSet.getString(8)));
                 CoursesOfStudent.add(temp);
                 System.out.println("Graded");
             }
 
-            String sql1 = "update student set isReportGenerated = 1 where StudentId = ?";
+            String sql1 = "update student set isReportGenerated = 1 where studentId = ?";
             this.statement = this.connection.prepareStatement(sql1);
-            this.statement.setString(1, StudentId);
+            this.statement.setString(1, studentId);
             int var9 = this.statement.executeUpdate();
         } catch (SQLException var7) {
             System.out.println("Error: " + var7.getMessage());

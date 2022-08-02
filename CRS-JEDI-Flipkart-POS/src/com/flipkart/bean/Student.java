@@ -4,11 +4,20 @@ import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 
 public class Student extends User{
+    private String department;
     private String studentId;
     private int semester;
+    private boolean isApproved;
 
     public String getStudentId() {
         return studentId;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+    public boolean getApproved() {
+        return isApproved;
     }
 
     public void setStudentId(String studentId) {
@@ -23,10 +32,20 @@ public class Student extends User{
         this.semester = semester;
     }
 
-    public Student(String userId, String name, String password, String address, Role role, Gender gender, String studentId, int semester) {
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setApproved(boolean approved) {
+        this.isApproved = approved;
+    }
+
+    public Student(String userId, String name, String password, String address, Role role, Gender gender, String studentId, int semester, String department, boolean isApproved) {
         super(userId, name, password, address, role, gender);
         this.studentId = studentId;
         this.semester = semester;
+        this.department = department;
+        this.isApproved = isApproved;
     }
 
 //    public void register() {
