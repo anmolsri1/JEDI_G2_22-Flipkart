@@ -26,7 +26,7 @@ public interface AdminDaoInterface {
 
     List<Student> viewPendingAdmissions();
 
-    void approveStudent(String var1) throws StudentNotFoundForApprovalException;
+    void approveStudent(int studentID) throws StudentNotFoundForApprovalException;
 
     void addProfessor(Professor var1) throws ProfessorNotAddedException, UserIdAlreadyInUseException;
 

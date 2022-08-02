@@ -24,7 +24,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
     private PreparedStatement statement = null;
     Connection connection = DBUtils.getConnection();
 
-    private AdminDaoImpl() {}
+    public AdminDaoImpl() {}
 
     public static AdminDaoImpl getInstance() {
         if (instance == null) {
@@ -96,7 +96,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return userList;
     }
 
-    public void approveStudent(String StudentId) throws StudentNotFoundForApprovalException {
+    public void approveStudent(int StudentId) throws StudentNotFoundForApprovalException {
         this.statement = null;
 
         try {
@@ -160,7 +160,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setString(1, professor.getUserId());
             this.statement.setString(2, professor.getDepartment());
-            this.statement.setString(3, professor.getDesignation());
+            this.statement.setString(3, professor.getPosition());
             int row = this.statement.executeUpdate();
             System.out.println(row + " professor added.");
             if (row == 0) {
