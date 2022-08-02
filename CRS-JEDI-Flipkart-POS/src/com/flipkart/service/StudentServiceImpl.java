@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentInterface{
     }
 
     @Override
-    public void viewGrades() {
+    public void viewGrades(int studentId) {
         // use regcourses table to get grades for courses for SID and use courses table to get course names
         System.out.println("Subject 1: A");
         System.out.println("Subject 2: A");
@@ -45,7 +45,7 @@ public class StudentServiceImpl implements StudentInterface{
     }
 
     @Override
-    public void addCourse() {
+    public void addCourse(int studentId) {
         List<Course> courses = viewCatalog();
         List<Course> selCourses = viewSelectedCourses();
         System.out.print("Select a course: ");
@@ -65,7 +65,7 @@ public class StudentServiceImpl implements StudentInterface{
     }
 
     @Override
-    public void dropCourse() {
+    public void dropCourse(int studentId) {
         List<Course> selCourses = viewSelectedCourses();
         System.out.print("Choose a course to drop: ");
         Scanner scanner = new Scanner((System.in));
@@ -94,7 +94,7 @@ public class StudentServiceImpl implements StudentInterface{
     }
 
     @Override
-    public List<Course> viewSelectedCourses() {
+    public List<Course> viewSelectedCourses(int studentId) {
         System.out.println("List of select courses: ");
 //        List<Course> courses = data.selectedCourses.get("S101").courseList;
 //        List<Course> courses = Catalog.getCourseList(studentID);
@@ -106,7 +106,7 @@ public class StudentServiceImpl implements StudentInterface{
     }
 
     @Override
-    public void payFee() {
+    public void payFee(int studentId) {
 //        if(data.feePaid.contains("S101")) {
 //            System.out.println("You have already paid the fee.");
 //        }

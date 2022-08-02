@@ -7,7 +7,9 @@ import com.flipkart.service.StudentServiceImpl;
 import java.util.Scanner;
 
 public class StudentMenu implements UserMenu {
+    private int studentId;
     public StudentMenu(int studentId) {
+        this.studentId = studentId;
     }
     @Override
     public void showMenu() {
@@ -25,22 +27,22 @@ public class StudentMenu implements UserMenu {
         int option = scanner.nextInt();
         switch(option) {
             case 1:
-                student.addCourse();
+                student.addCourse(studentId);
                 break;
             case 2:
-                student.dropCourse();
+                student.dropCourse(studentId);
                 break;
             case 3:
                 student.viewCatalog();
                 break;
             case 4:
-                student.viewGrades();
+                student.viewGrades(studentId);
                 break;
             case 5:
-                student.viewSelectedCourses();
+                student.viewSelectedCourses(studentId);
                 break;
             case 6:
-                student.payFee();
+                student.payFee(studentId);
                 break;
             case 7:
                 System.out.println("Successfully logged out!!!");
