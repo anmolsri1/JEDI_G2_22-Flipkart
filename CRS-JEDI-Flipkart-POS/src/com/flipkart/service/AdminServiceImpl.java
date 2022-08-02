@@ -88,6 +88,10 @@ public class AdminServiceImpl implements AdminInterface{
     public void removeCourse() throws CourseNotDeletedException, CourseNotFoundException {
         AdminDaoInterface admin = new AdminDaoImpl();
         List<Course> courses = admin.viewCourses();
+        if(courses.size()==0){
+            System.out.println("There are no courses to remove!!!");
+            return;
+        }
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
         System.out.print("Choose a course to remove: ");
         Scanner scanner = new Scanner((System.in));
