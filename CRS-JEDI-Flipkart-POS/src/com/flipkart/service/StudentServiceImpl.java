@@ -26,6 +26,9 @@ public class StudentServiceImpl implements StudentInterface{
         String name = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
+        System.out.print("Enter id: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
         System.out.print("Enter address: ");
         String address = scanner.nextLine();
         System.out.print("Enter gender: ");
@@ -35,7 +38,7 @@ public class StudentServiceImpl implements StudentInterface{
         scanner.nextLine();
 
         StudentDaoInterface student = new StudentDaoImpl();
-        student.addStudent(new Student(101,name,password, address, Role.stringToName("student"), Gender.stringToGender(gender), 101, 1, "dept", false, false));
+        student.addStudent(new Student(id,name,password, address, Role.stringToName("student"), Gender.stringToGender(gender), id, semester, "CSE", false, false));
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
 //        CRSApplication.showMenu(data);
     }

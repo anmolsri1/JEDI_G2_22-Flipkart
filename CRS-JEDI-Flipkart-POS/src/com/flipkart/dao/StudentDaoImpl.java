@@ -65,7 +65,6 @@ public class StudentDaoImpl implements StudentDaoInterface {
             int rowsAffected=preparedStatement.executeUpdate();
             if(rowsAffected==1)
             {
-
                 //add the student record
                 //"insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
                 PreparedStatement preparedStatementStudent;
