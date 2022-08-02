@@ -21,7 +21,7 @@ public interface UserDaoInterface {
      * @param userId
      * @return RoleConstant
      */
-    public String getRole(int userId);
+    public int getRole(int userId);
 
 
     /**

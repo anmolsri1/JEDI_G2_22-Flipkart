@@ -129,7 +129,7 @@ public class UserDaoImpl implements UserDaoInterface {
      * @return RoleConstant
      */
     @Override
-    public String getRole(int userId)
+    public int getRole(int userId)
     {
         Connection connection = DBUtils.getConnection();
         try {
@@ -143,8 +143,8 @@ public class UserDaoImpl implements UserDaoInterface {
 
             if(rs.next())
             {
-                System.out.println("Info: " + rs.getString("type"));
-                return rs.getString("type");
+                System.out.println("Info: " + rs.getInt("type"));
+                return rs.getInt("type");
             }
 
         }
@@ -163,7 +163,7 @@ public class UserDaoImpl implements UserDaoInterface {
                 //e.printStackTrace();
             }
         }
-        return null;
+        return -1;
     }
 
 

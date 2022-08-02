@@ -26,8 +26,10 @@ public class UserServiceImpl implements UserInterface{
         boolean auth = user.verifyCredentials(username,password);
         Role role = null;
         if (auth) {
-            System.out.println("RRR");
-            role = Role.stringToName(user.getRole(username));
+            role = Role.intToName(user.getRole(username));
+            System.out.println(username);
+            System.out.println(user.getRole(username));
+            System.out.println(role.toString());
         }
         return role;
     }
