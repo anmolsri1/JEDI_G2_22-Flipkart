@@ -33,7 +33,7 @@ public class AdminMenu implements UserMenu {
                 admin.addProfessor();
                 break;
             case 3:
-                admin.generateGradeCard()
+                admin.generateGradeCard();
                 break;
             case 4:
                 admin.addCourse();
