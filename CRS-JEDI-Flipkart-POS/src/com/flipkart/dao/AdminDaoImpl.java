@@ -160,7 +160,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setString(1, professor.getUserId());
             this.statement.setString(2, professor.getDepartment());
-            this.statement.setString(3, professor.getDesignation());
+            this.statement.setString(3, professor.getPosition());
             int row = this.statement.executeUpdate();
             System.out.println(row + " professor added.");
             if (row == 0) {
@@ -202,7 +202,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Course> courseList = new ArrayList();
 
         try {
-            String sql = "select courseCode, courseName, professorId from Course";
+            String sql = "select id, courseName, professorId from Course";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
