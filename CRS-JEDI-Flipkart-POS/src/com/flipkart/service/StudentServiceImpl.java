@@ -1,9 +1,7 @@
 package com.flipkart.service;
 
-import com.flipkart.app.CRSApplication;
 import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
-import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
 
@@ -47,7 +45,7 @@ public class StudentServiceImpl implements StudentInterface{
     @Override
     public void addCourse(int studentId) {
         List<Course> courses = viewCatalog();
-        List<Course> selCourses = viewSelectedCourses();
+        List<Course> selCourses = viewSelectedCourses(studentId);
         System.out.print("Select a course: ");
         Scanner scanner = new Scanner((System.in));
         String choice = scanner.nextLine();
@@ -58,7 +56,7 @@ public class StudentServiceImpl implements StudentInterface{
                 Catalog sel = new Catalog();
                 sel.courseList = selCourses;
 //                data.selectedCourses.put("S101",sel);
-                viewSelectedCourses();
+                viewSelectedCourses(studentId);
                 System.out.println("Course "+choice+" added successfully!");
             }
         });
@@ -66,7 +64,7 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void dropCourse(int studentId) {
-        List<Course> selCourses = viewSelectedCourses();
+        List<Course> selCourses = viewSelectedCourses(studentId);
         System.out.print("Choose a course to drop: ");
         Scanner scanner = new Scanner((System.in));
         String choice = scanner.nextLine();
@@ -80,7 +78,7 @@ public class StudentServiceImpl implements StudentInterface{
         Catalog sel = new Catalog();
         sel.courseList = updateSelCourses;
 //        data.selectedCourses.put("S101",sel);
-        viewSelectedCourses();
+        viewSelectedCourses(studentId);
         System.out.println("Course "+choice+" dropped successfully!");
     }
 

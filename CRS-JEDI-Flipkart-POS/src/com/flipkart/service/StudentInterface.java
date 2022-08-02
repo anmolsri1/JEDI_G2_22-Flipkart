@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface StudentInterface {
     void register();
-    void viewGrades();
-    void addCourse();
-    void dropCourse();
+    void viewGrades(int studentId);
+    void addCourse(int studentId);
+    void dropCourse(int studentId);
     List<Course> viewCatalog();
-    List<Course> viewSelectedCourses();
-    void payFee();
+    List<Course> viewSelectedCourses(int studentId);
+    void payFee(int studentId);
 }
