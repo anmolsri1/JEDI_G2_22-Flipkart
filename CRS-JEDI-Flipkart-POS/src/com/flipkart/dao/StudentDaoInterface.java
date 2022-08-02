@@ -1,5 +1,8 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Student;
+import com.flipkart.exception.StudentNotRegisteredException;
+
 public interface StudentDaoInterface {
     /**
      * Method to add student to database

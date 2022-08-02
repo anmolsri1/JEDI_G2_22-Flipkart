@@ -47,7 +47,7 @@ public class Student extends User{
         this.isReportGenerated = isReportGenerated;
     }
 
-    public Student(String userId, String name, String password, String address, Role role, Gender gender, String studentId, int semester, String department, boolean isApproved, boolean isReportGenerated) {
+    public Student(int userId, String name, String password, String address, Role role, Gender gender, String studentId, int semester, String department, boolean isApproved, boolean isReportGenerated) {
         super(userId, name, password, address, role, gender);
         this.studentId = studentId;
         this.semester = semester;

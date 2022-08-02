@@ -1,33 +1,35 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Student;
+import com.flipkart.constant.SqlQueriesConstant;
+import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.utils.DBUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.logging.Logger;
 
 public class StudentDaoImpl implements StudentDaoInterface {
-    private static volatile StudentDaoOperation instance=null;
-    private static Logger logger = Logger.getLogger(StudentDaoOperation.class);
+    private static volatile StudentDaoImpl instance=null;
 
     /**
      * Default Constructor
      */
-    private StudentDaoOperation()
+    private StudentDaoImpl()
     {
 
     }
 
     /**
-     * Method to make StudentDaoOperation Singleton
+     * Method to make StudentDaoImpl Singleton
      * @return
      */
-    public static StudentDaoOperation getInstance()
+    public static StudentDaoImpl getInstance()
     {
         if(instance==null)
         {
             // This is a synchronized block, when multiple threads will access this instance
-            synchronized(StudentDaoOperation.class){
-                instance=new StudentDaoOperation();
+            synchronized(StudentDaoImpl.class){
+                instance=new StudentDaoImpl();
             }
         }
         return instance;
@@ -40,15 +42,15 @@ public class StudentDaoImpl implements StudentDaoInterface {
      * @throws StudentNotRegisteredException
      */
     @Override
-    public String addStudent(Student student) throws StudentNotRegisteredException{
+    public String addStudent(Student student) throws StudentNotRegisteredException {
         Connection connection=DBUtils.getConnection();
 
         String studentId=null;
         try
         {
             //open db connection
-            PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstant.ADD_USER_QUERY);
-            preparedStatement.setString(1, student.getUserId());
+            PreparedStatement preparedStatement=connection.prepareStatement(SqlQueriesConstant.ADD_USER_QUERY);
+            preparedStatement.setInt(1, student.getUserId());
             preparedStatement.setString(2, student.getName());
             preparedStatement.setString(3, student.getPassword());
             preparedStatement.setString(4, student.getRole().toString());
@@ -62,10 +64,9 @@ public class StudentDaoImpl implements StudentDaoInterface {
                 //add the student record
                 //"insert into student (userId,branchName,batch,isApproved) values (?,?,?,?)";
                 PreparedStatement preparedStatementStudent;
-                preparedStatementStudent=connection.prepareStatement(SQLQueriesConstant.ADD_STUDENT,Statement.RETURN_GENERATED_KEYS);
-                preparedStatementStudent.setString(1,student.getUserId());
+                preparedStatementStudent=connection.prepareStatement(SqlQueriesConstant.ADD_STUDENT, Statement.RETURN_GENERATED_KEYS);
+                preparedStatementStudent.setInt(1,student.getUserId());
                 preparedStatementStudent.setString(2, student.getDepartment());
-                preparedStatementStudent.setInt(3, student.getGradYear());
                 //preparedStatementStudent.setBoolean(4, true);
                 preparedStatementStudent.executeUpdate();
                 ResultSet results=preparedStatementStudent.getGeneratedKeys();
@@ -83,9 +84,9 @@ public class StudentDaoImpl implements StudentDaoInterface {
         {
             try {
                 connection.close();
-            } catch (SQLException e) {
-                logger.info(e.getMessage()+"SQL error");
-                e.printStackTrace();
+            } catch (SQLException err) {
+                System.out.println("Error: " + err.getMessage());
+                err.printStackTrace();
             }
         }
         return studentId;
@@ -100,7 +101,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
     public String getStudentId(String userId) {
         Connection connection=DBUtils.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_STUDENT_ID);
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_STUDENT_ID);
             statement.setString(1, userId);
             ResultSet rs = statement.executeQuery();
 
@@ -110,9 +111,9 @@ public class StudentDaoImpl implements StudentDaoInterface {
             }
 
         }
-        catch(SQLException e)
+        catch(SQLException err)
         {
-            logger.error(e.getMessage());
+            System.out.println("Error: " + err.getMessage());
         }
 
         return null;
@@ -127,7 +128,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
     public boolean isApproved(String studentId) {
         Connection connection=DBUtils.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.IS_APPROVED);
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.IS_APPROVED);
             statement.setString(1, studentId);
             ResultSet rs = statement.executeQuery();
 
@@ -137,9 +138,9 @@ public class StudentDaoImpl implements StudentDaoInterface {
             }
 
         }
-        catch(SQLException e)
+        catch(SQLException err)
         {
-            logger.error(e.getMessage());
+            System.out.println("Error: " + err.getMessage());
         }
 
         return false;
