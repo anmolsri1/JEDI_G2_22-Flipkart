@@ -1,13 +1,13 @@
 package com.flipkart.exception;
 
 public class CourseExistsAlreadyException extends Exception {
-    private String courseCode;
+    private int courseCode;
 
-    public CourseExistsAlreadyException(String courseCode) {
+    public CourseExistsAlreadyException(int courseCode) {
         this.courseCode = courseCode;
     }
 
-    public String getCourseCode() {
+    public int getCourseCode() {
         return this.courseCode;
     }
 

@@ -22,7 +22,7 @@ public interface AdminDaoInterface {
 
     void setGeneratedReportCardTrue(String var1);
 
-    List<RegisteredCourse> generateGradeCard(String var1);
+    List<RegisteredCourse> generateGradeCard(int var1);
 
     List<Student> viewPendingAdmissions();
 
@@ -33,8 +33,6 @@ public interface AdminDaoInterface {
     void removeCourse(String var1) throws CourseNotFoundException, CourseNotDeletedException;
 
     void addCourse(Course var1) throws CourseExistsAlreadyException;
-
-    void assignCourse(String var1, String var2) throws CourseNotFoundException, UserNotFoundException;
 
     void addUser(User var1) throws UserNotAddedException, UserIdAlreadyInUseException;
 
