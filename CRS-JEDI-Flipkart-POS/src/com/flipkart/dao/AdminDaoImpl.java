@@ -58,12 +58,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void addCourse(Course course) throws CourseExistsAlreadyException {
         this.statement = null;
         try {
-            String sql = "insert into catalogue(course_id, course_name, seats, professor_id) values (?, ?, ?, ?)";
+            String sql = "insert into catalogue(course_name, seats) values (?, ?)";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, course.getCourseId());
-            this.statement.setString(2, course.getCourseName());
-            this.statement.setInt(3, 10);
-            this.statement.setString(4, "NOT_ASSIGNED");
+            this.statement.setString(1, course.getCourseName());
+            this.statement.setInt(3, course.getSeats());
             int row = this.statement.executeUpdate();
             System.out.println(row + " course added");
             if (row == 0) {
@@ -82,11 +80,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
         List<Student> userList = new ArrayList();
         try {
-            String sql = "select id, name, password, type, gender, address, studentId, semester, department, isApproved from student, user where isApproved = 0 and studentId = userId";
+            String sql = "select id, name, password, type, gender, address, studentId, semester, department, isApproved, isReportGenerated from student, user where isApproved = 0 and studentId = userId";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
             while(resultSet.next()) {
-                Student user = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getString(7), resultSet.getInt(8), resultSet.getString(9), resultSet.getBoolean(10));
+                Student user = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getString(7), resultSet.getInt(8), resultSet.getString(9), resultSet.getBoolean(10), resultSet.getBoolean(11));
                 userList.add(user);
             }
             System.out.println(userList.size() + " students have pending-approval.");
@@ -207,7 +205,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
                 courseList.add(course);
             }
 
@@ -224,20 +222,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Professor> professorList = new ArrayList();
 
         try {
-            String sql = "select userId, name, gender, department, designation, address from Professor natural join user where userId = professorId";
+            String sql = "select id, name, gender, department, type, position, address, professorId from Professor natural join user where id = professorId";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Professor professor = new Professor();
-                professor.setUserId(resultSet.getString(1));
-                professor.setName(resultSet.getString(2));
-                professor.setGender(Gender.stringToGender(resultSet.getString(3)));
-                professor.setDepartment(resultSet.getString(4));
-                professor.setPosition(resultSet.getString(5));
-                professor.setAddress(resultSet.getString(6));
-                professor.setRole(Role.PROFESSOR);
-                professor.setPassword("*********");
+                Professor professor = new Professor(resultSet.getString(1), resultSet.getString(2), "*********", resultSet.getString(7), Role.stringToName(resultSet.getString(5)), Gender.stringToGender(resultSet.getString(3)), resultSet.getString(8), resultSet.getString(4), resultSet.getString(5));
                 professorList.add(professor);
             }
 
@@ -262,28 +252,28 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
     }
 
-    public List<RegisteredCourse> generateGradeCard(String studentId) {
+    public List<RegisteredCourse> generateGradeCard(int studentId) {
         List<RegisteredCourse> CoursesOfStudent = new ArrayList();
 
         try {
-            String sql = " select * from course inner join registeredcourse on course.courseCode = registeredcourse.courseCode where registeredcourse.studentId = ?";
+            String sql = "select courseId, courseName, professorId, seats, studentId, grade, semester from catalogue inner join registeredCourse on course.courseId = registeredCourse.courseId where registeredCourse.studentId = ?";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, studentId);
+            this.statement.setInt(1, studentId);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getString(3));
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
                 RegisteredCourse temp = new RegisteredCourse();
                 temp.setCourseId(course.getCourseId());
                 temp.setStudentId(studentId);
-                temp.setGrade(new Grade(resultSet.getString(8)));
+                temp.setGrade(new Grade(resultSet.getString(6)));
                 CoursesOfStudent.add(temp);
                 System.out.println("Graded");
             }
 
             String sql1 = "update student set isReportGenerated = 1 where studentId = ?";
             this.statement = this.connection.prepareStatement(sql1);
-            this.statement.setString(1, studentId);
+            this.statement.setInt(1, studentId);
             int var9 = this.statement.executeUpdate();
         } catch (SQLException var7) {
             System.out.println("Error: " + var7.getMessage());
