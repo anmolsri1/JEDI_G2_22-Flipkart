@@ -1,9 +1,12 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.constant.Gender;
+import com.flipkart.constant.Role;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
 import com.flipkart.dao.DummyData;
+import com.flipkart.exception.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,7 @@ public class AdminServiceImpl implements AdminInterface{
         this.data = data;
     }
     @Override
-    public void verifyStudent() {
+    public void verifyStudent() throws StudentNotFoundForApprovalException {
         AdminDaoInterface admin = new AdminDaoImpl();
         List<Student> studentList = admin.viewPendingAdmissions();
         studentList.forEach(student -> {
@@ -29,7 +32,7 @@ public class AdminServiceImpl implements AdminInterface{
     }
 
     @Override
-    public void addProfessor() {
+    public void addProfessor() throws UserIdAlreadyInUseException, ProfessorNotAddedException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
@@ -44,7 +47,7 @@ public class AdminServiceImpl implements AdminInterface{
         System.out.print("Enter position: ");
         String position = scanner.nextLine();
 
-        Professor professor = new Professor(1, name, password, address, "professor", gender, 1, department, position);
+        Professor professor = new Professor(1, name, password, address, Role.stringToName("professor"), Gender.stringToGender(gender), 1, department, position);
         AdminDaoInterface admin = new AdminDaoImpl();
         admin.addProfessor(professor);
     }
@@ -62,22 +65,24 @@ public class AdminServiceImpl implements AdminInterface{
     }
 
     @Override
-    public void addCourse() {
+    public void addCourse() throws CourseExistsAlreadyException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter course ID: ");
         int courseId = scanner.nextInt();
         System.out.print("Enter course name: ");
         String courseName = scanner.nextLine();
         System.out.print("Enter instructor's name: ");
-        String instructor = scanner.nextLine();
-        Course course = new Course(courseId,courseName,true,instructor);
+        int instructor = scanner.nextInt();
+        System.out.print("Enter no. of seats: ");
+        int seats = scanner.nextInt();
+        Course course = new Course(courseId,courseName,seats ,instructor);
 
         AdminDaoInterface admin = new AdminDaoImpl();
         admin.addCourse(course);
     }
 
     @Override
-    public void removeCourse() {
+    public void removeCourse() throws CourseNotDeletedException, CourseNotFoundException {
         AdminDaoInterface admin = new AdminDaoImpl();
         List<Course> courses = admin.viewCourses();
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
@@ -85,6 +90,5 @@ public class AdminServiceImpl implements AdminInterface{
         Scanner scanner = new Scanner((System.in));
         String courseId = scanner.nextLine();
         admin.removeCourse(courseId);
-
     }
 }
