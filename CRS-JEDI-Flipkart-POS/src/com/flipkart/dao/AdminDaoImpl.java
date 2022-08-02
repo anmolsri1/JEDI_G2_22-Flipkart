@@ -100,7 +100,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         try {
             String sql = "update student set isApproved = 1 where studentId = ?";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, studentId);
+            this.statement.setInt(1, studentId);
             int row = this.statement.executeUpdate();
             System.out.println(row + " student approved.");
             if (row == 0) {
@@ -221,12 +221,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Course> courseList = new ArrayList();
 
         try {
-            String sql = "select courseId, courseName, seats from catalogue where professorId is NULL;
+            String sql = "select courseId, courseName, seats from catalogue where professorId is NULL";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
                 courseList.add(course);
             }
 
@@ -243,7 +243,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Professor> professorList = new ArrayList();
 
         try {
-            String sql = "select id, name, gender, department, type, position, address, professorId from Professor natural join user where id = professorId";
+            String sql = "select id, name, gender, department, type, position, address, professorId from professor natural join user where id = professorId";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
