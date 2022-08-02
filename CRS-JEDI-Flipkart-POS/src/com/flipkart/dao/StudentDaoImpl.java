@@ -158,8 +158,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.ADD_REGISTERED_COURSE);
             statement.setInt(1, studentId);
             statement.setInt(2, courseId);
-            ResultSet rs = statement.executeQuery();
-
+            statement.executeUpdate();
         }
         catch(SQLException err)
         {
@@ -183,7 +182,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.DROP_REGISTERED_COURSE);
             statement.setInt(1, studentId);
             statement.setInt(2, courseId);
-            ResultSet rs = statement.executeQuery();
+            statement.executeUpdate();
         }
         catch(SQLException err)
         {
@@ -212,7 +211,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
             int cid = -1;
             if(rs.next())
             {
-                cid = rs.getInt("studentId");
+                cid = rs.getInt("courseId");
             }
 
             statement = connection.prepareStatement(SqlQueriesConstant.GET_COURSES_BY_ID);

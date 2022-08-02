@@ -28,7 +28,7 @@ public interface ProfessorDaoInterface {
      * @param profId
      * @return Professor Id in string
      */
-    public String getProfessorById(String profId);
+    public String getProfessorById(int profId);
 
 
     void registerForCourses(int profId, int courseId);

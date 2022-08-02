@@ -91,7 +91,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_PROF_NAME);
 
-            statement.setString(1, profId);
+            statement.setInt(1, profId);
             ResultSet rs = statement.executeQuery();
             rs.next();
 
