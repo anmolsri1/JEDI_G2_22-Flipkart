@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.flipkart.constant.SqlQueriesConstant;
 
-import com.flipkart.constant.SQLQueriesConstant;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.utils.DBUtils;
 
@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDaoInterface {
     public boolean updatePassword(String userId, String newPassword) {
         Connection connection=DBUtils.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.UPDATE_PASSWORD);
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.UPDATE_PASSWORD);
 
             statement.setString(1, newPassword);
             statement.setString(2, userId);
@@ -87,7 +87,7 @@ public class UserDaoImpl implements UserDaoInterface {
         try
         {
             //open db connection
-            PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstant.VERIFY_CREDENTIALS);
+            PreparedStatement preparedStatement=connection.prepareStatement(SqlQueriesConstant.VERIFY_CREDENTIALS);
             preparedStatement.setString(1,userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -136,7 +136,7 @@ public class UserDaoImpl implements UserDaoInterface {
             System.out.println("Info: " + userId);
             connection=DBUtils.getConnection();
 
-            PreparedStatement statement = connection.prepareStatement(SQLQueriesConstant.GET_ROLE);
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_ROLE);
             statement.setString(1, userId);
             ResultSet rs = statement.executeQuery();
             System.out.println("Info: query executed");
