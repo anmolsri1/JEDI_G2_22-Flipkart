@@ -39,7 +39,10 @@ public class SqlQueriesConstant {
     public static final String IS_REGISTERED=" select courseId from registeredCourse where courseId=? and studentId=? ";
 
     public static final String GET_GRADES = "select grade from registeredCourse where studentId=?";
-
+    public static final String ADD_REGISTERED_COURSE = "insert into registeredCourse (studentId, courseId) VALUES(?,?)";
+    public static final String DROP_REGISTERED_COURSE = "delete from registeredCourse where studentId = ? and courseId = ?";
+    public static final String GET_COURSE_ID_FROM_STUDENT_ID = "select courseId from registeredCourse where studentId = ?";
+    public static final String GET_COURSES_BY_ID = "select * from course where courseId = ?";
     //ProfessorDao queries
 
     public static final String UPDATE_PASSWORD="update user set password=? where id = ? ";

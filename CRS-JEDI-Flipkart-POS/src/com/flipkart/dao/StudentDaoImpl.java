@@ -1,11 +1,16 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
+import com.flipkart.constant.Gender;
+import com.flipkart.constant.Role;
 import com.flipkart.constant.SqlQueriesConstant;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.utils.DBUtils;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class StudentDaoImpl implements StudentDaoInterface {
@@ -144,5 +149,94 @@ public class StudentDaoImpl implements StudentDaoInterface {
         }
 
         return false;
+    }
+
+    @Override
+    public void addCourse(int studentId, int courseId) {
+        Connection connection=DBUtils.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.ADD_REGISTERED_COURSE);
+            statement.setInt(1, studentId);
+            statement.setInt(2, courseId);
+            ResultSet rs = statement.executeQuery();
+
+        }
+        catch(SQLException err)
+        {
+            System.out.println("Error: " + err.getMessage());
+        }
+        finally
+        {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void dropCourse(int studentId, int courseId) {
+        Connection connection=DBUtils.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.DROP_REGISTERED_COURSE);
+            statement.setInt(1, studentId);
+            statement.setInt(2, courseId);
+            ResultSet rs = statement.executeQuery();
+        }
+        catch(SQLException err)
+        {
+            System.out.println("Error: " + err.getMessage());
+        }
+        finally
+        {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public List<Course> viewSelectedCourses(int studentId) {
+        Connection connection=DBUtils.getConnection();
+        List<Course> courses = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_COURSE_ID_FROM_STUDENT_ID);
+            statement.setInt(1, studentId);
+            ResultSet rs = statement.executeQuery();
+
+            int cid = -1;
+            if(rs.next())
+            {
+                cid = rs.getInt("studentId");
+            }
+
+            statement = connection.prepareStatement(SqlQueriesConstant.GET_COURSES_BY_ID);
+            statement.setInt(1, cid);
+            rs = statement.executeQuery();
+            while(rs.next()) {
+                Course course = new Course(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+                courses.add(course);
+            }
+        }
+        catch(SQLException err)
+        {
+            System.out.println("Error: " + err.getMessage());
+        }
+        finally
+        {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return courses;
     }
 }

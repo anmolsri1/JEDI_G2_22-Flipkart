@@ -66,7 +66,7 @@ public class StudentServiceImpl implements StudentInterface{
         viewSelectedCourses(studentId);
         System.out.print("Choose a course to drop: ");
         Scanner scanner = new Scanner((System.in));
-        String courseId = scanner.nextLine();
+        int courseId = scanner.nextInt();
         StudentDaoInterface student = new StudentDaoImpl();
         student.dropCourse(studentId,courseId);
     }

@@ -1,7 +1,10 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.StudentNotRegisteredException;
+
+import java.util.List;
 
 public interface StudentDaoInterface {
     /**
@@ -26,4 +29,10 @@ public interface StudentDaoInterface {
      * @return boolean indicating if student is approved
      */
     public boolean isApproved(int studentId);
+
+    void addCourse(int studentId, int courseId);
+
+    void dropCourse(int studentId, int courseId);
+
+    List<Course> viewSelectedCourses(int studentId);
 }
