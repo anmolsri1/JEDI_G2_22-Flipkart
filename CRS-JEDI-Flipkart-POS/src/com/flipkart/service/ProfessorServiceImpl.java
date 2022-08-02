@@ -23,12 +23,12 @@ public class ProfessorServiceImpl implements ProfessorInterface{
     public void addGrade() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter Student ID: ");
-        String student_id = sc.nextLine();
+        String studentId = sc.nextLine();
         System.out.println("Please enter Course ID: ");
         String course_id = sc.nextLine();
         System.out.println("Please enter Grade: ");
         String grade = sc.nextLine();
-        data.mapGrades.put(student_id, new Pair<String, String>(course_id, grade)); // change this to add/update grade in registered courses table using SID and CID.
+        data.mapGrades.put(studentId, new Pair<String, String>(course_id, grade)); // change this to add/update grade in registered courses table using SID and CID.
     }
 
     @Override

@@ -4,7 +4,7 @@ public class Course {
     private String courseId;
     private String courseName;
     private int seats;
-    private String instructor;
+    private int instructor;
 
     public String getCourseId() {
         return courseId;
@@ -30,15 +30,15 @@ public class Course {
         this.seats = seats;
     }
 
-    public String getInstructor() {
+    public int getInstructor() {
         return instructor;
     }
 
-    public void setInstructor(String instructor) {
+    public void setInstructor(int instructor) {
         this.instructor = instructor;
     }
 
-    public Course(String courseId, String courseName, int seats, String instructor) {
+    public Course(String courseId, String courseName, int seats, int instructor) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.seats = seats;
