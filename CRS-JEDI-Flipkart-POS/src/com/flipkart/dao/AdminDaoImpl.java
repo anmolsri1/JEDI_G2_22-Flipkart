@@ -85,7 +85,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
             while(resultSet.next()) {
-                Student user = new Student(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getString(7), resultSet.getInt(8), resultSet.getString(9), resultSet.getBoolean(10), resultSet.getBoolean(11));
+                Student user = new Student(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9), resultSet.getBoolean(10), resultSet.getBoolean(11));
                 userList.add(user);
             }
             System.out.println(userList.size() + " students have pending-approval.");

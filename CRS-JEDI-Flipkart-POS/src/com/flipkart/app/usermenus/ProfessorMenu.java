@@ -14,7 +14,7 @@ public class ProfessorMenu implements UserMenu {
     }
 
     @Override
-    public void showMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
+    public void showMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException, StudentNotRegisteredException {
         System.out.println("----------Professor Menu----------");
         System.out.println("1. Add Grades");
         System.out.println("2. View Enrolled Students");

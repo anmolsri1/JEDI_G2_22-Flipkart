@@ -58,7 +58,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
             preparedStatement.setInt(1, student.getUserId());
             preparedStatement.setString(2, student.getName());
             preparedStatement.setString(3, student.getPassword());
-            preparedStatement.setString(4, student.getRole().toString());
+            preparedStatement.setInt(4, 2);
             preparedStatement.setString(5, student.getGender().toString());
             preparedStatement.setString(6, student.getAddress());
 

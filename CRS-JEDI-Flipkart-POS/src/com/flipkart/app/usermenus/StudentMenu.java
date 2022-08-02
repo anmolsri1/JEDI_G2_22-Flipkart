@@ -13,7 +13,7 @@ public class StudentMenu implements UserMenu {
         this.studentId = studentId;
     }
     @Override
-    public void showMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
+    public void showMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException, StudentNotRegisteredException {
         System.out.println("----------Student Menu----------");
         System.out.println("1. Add Course");
         System.out.println("2. Drop Course");

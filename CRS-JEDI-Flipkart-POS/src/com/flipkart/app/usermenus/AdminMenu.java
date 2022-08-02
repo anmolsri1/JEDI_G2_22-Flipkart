@@ -13,7 +13,7 @@ public class AdminMenu implements UserMenu {
         this.userId = userId;
     }
     @Override
-    public void showMenu() throws StudentNotFoundForApprovalException, UserIdAlreadyInUseException, ProfessorNotAddedException, CourseExistsAlreadyException, CourseNotDeletedException, CourseNotFoundException, UserNotFoundException {
+    public void showMenu() throws StudentNotFoundForApprovalException, UserIdAlreadyInUseException, ProfessorNotAddedException, CourseExistsAlreadyException, CourseNotDeletedException, CourseNotFoundException, UserNotFoundException, StudentNotRegisteredException {
         System.out.println("----------Admin Menu----------");
         System.out.println("1. Verify Students");
         System.out.println("2. Add Professor");

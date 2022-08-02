@@ -15,7 +15,7 @@ import java.util.Scanner;
 import java.time.*;
 
 public class LoginMenu {
-    public static void showLoginMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
+    public static void showLoginMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException, StudentNotRegisteredException {
         System.out.println("Login menu.");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Username: ");

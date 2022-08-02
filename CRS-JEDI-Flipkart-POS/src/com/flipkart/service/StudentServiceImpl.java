@@ -3,6 +3,7 @@ package com.flipkart.service;
 import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
+import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
@@ -34,7 +35,7 @@ public class StudentServiceImpl implements StudentInterface{
         scanner.nextLine();
 
         StudentDaoInterface student = new StudentDaoImpl();
-        student.addStudent(new Student(101,name,password, address, Role.stringToName("student"), Role.stringToName(gender), 101, 1, "dept", false, false));
+        student.addStudent(new Student(101,name,password, address, Role.stringToName("student"), Gender.stringToGender(gender), 101, 1, "dept", false, false));
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
 //        CRSApplication.showMenu(data);
     }
