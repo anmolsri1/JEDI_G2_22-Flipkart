@@ -28,6 +28,7 @@ public class StudentServiceImpl implements StudentInterface{
         String gender = scanner.nextLine();
         System.out.print("Enter semester: ");
         int semester = scanner.nextInt();
+
 //        data.approvalStudent.add(new Student(1,name,password,address,1,gender,1,1));
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
 //        CRSApplication.showMenu(data);
@@ -86,8 +87,6 @@ public class StudentServiceImpl implements StudentInterface{
     @Override
     public List<Course> viewCatalog() {
         System.out.println("List of available courses: ");
-//        List<Course> courses = data.catalog.get(1).courseList;
-//        List<Course> courses = Catalog.getCourseList();
         AdminDaoInterface admin = new AdminDaoImpl();
         List<Course> courses = admin.viewCourses();
         courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
