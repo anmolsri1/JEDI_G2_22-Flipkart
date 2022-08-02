@@ -33,8 +33,8 @@ public class Professor extends User{
     }
 
     public Professor(){}
-    public Professor(int userId, String name, String password, String address, Role role, Gender gender, int professorId, String department, String position) {
-        super(userId, name, password, address, role, gender);
+    public Professor(int userId, String name, String password, String address, int role, Gender gender, int professorId, String department, String position) {
+        super(userId, name, password, address, Role.intToName(role), gender);
         this.professorId = professorId;
         this.department = department;
         this.position = position;

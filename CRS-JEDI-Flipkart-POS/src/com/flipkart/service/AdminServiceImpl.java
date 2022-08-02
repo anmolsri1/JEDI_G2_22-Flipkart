@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminInterface{
         System.out.print("Enter position: ");
         String position = scanner.nextLine();
 
-        Professor professor = new Professor(id, name, password, address, Role.stringToName("professor"), Gender.stringToGender(gender), 1, department, position);
+        Professor professor = new Professor(id, name, password, address, 3, Gender.stringToGender(gender), 1, department, position);
         AdminDaoInterface admin = new AdminDaoImpl();
         admin.addProfessor(professor);
     }

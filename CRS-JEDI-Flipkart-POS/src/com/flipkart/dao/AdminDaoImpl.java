@@ -249,7 +249,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Professor professor = new Professor(resultSet.getInt(1), resultSet.getString(2), "*********", resultSet.getString(7), Role.stringToName(resultSet.getString(5)), Gender.stringToGender(resultSet.getString(3)), resultSet.getInt(8), resultSet.getString(4), resultSet.getString(5));
+                Professor professor = new Professor(resultSet.getInt(1), resultSet.getString(2), "*********", resultSet.getString(7), resultSet.getInt(5), Gender.stringToGender(resultSet.getString(3)), resultSet.getInt(8), resultSet.getString(4), resultSet.getString(5));
                 professorList.add(professor);
             }
 
