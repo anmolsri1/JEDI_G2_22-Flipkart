@@ -46,14 +46,14 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
     }
 
     @Override
-    public Boolean addGrade(String studentId, String courseCode, String grade) {
+    public Boolean addGrade(int studentId, int courseCode, int grade) {
         Connection connection= DBUtils.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.ADD_GRADE);
 
-            statement.setString(1, grade);
-            statement.setString(2, courseCode);
-            statement.setString(3, studentId);
+            statement.setInt(1, grade);
+            statement.setInt(2, courseCode);
+            statement.setInt(3, studentId);
 
             int row = statement.executeUpdate();
 
@@ -114,6 +114,64 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         }
 
         return prof_Name;
+    }
+
+    @Override
+    public void registerForCourses(int profId, int courseId) {
+        Connection connection= DBUtils.getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.REGISTER_FOR_COURSE);
+
+            statement.setInt(1, profId);
+            statement.setInt(2, courseId);
+
+            int row = statement.executeUpdate();
+        }
+        catch(SQLException err)
+        {
+            System.out.println("Error: " + err.getMessage());
+        }
+        finally
+        {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public int getCourseIdFromProfessorId(int profId) {
+        int courseId = -1;
+        Connection connection=DBUtils.getConnection();
+        try
+        {
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_COURSE_ID_FROM_PROF_ID);
+
+            statement.setInt(1, profId);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+
+            courseId = rs.getInt(1);
+        }
+        catch(SQLException err)
+        {
+            System.out.println("Error: " + err.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                connection.close();
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return courseId;
     }
 
     /**

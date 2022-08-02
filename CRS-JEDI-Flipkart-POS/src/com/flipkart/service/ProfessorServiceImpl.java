@@ -1,6 +1,7 @@
 package com.flipkart.service;
 
 import com.flipkart.app.usermenus.ProfessorMenu;
+import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.*;
@@ -21,8 +22,9 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         System.out.println("Enter you ID");
         Scanner scanner = new Scanner(System.in);
-//        get courseid using professorId
-        List<Student> studentList = professor.getEnrolledStudents(courseId);
+        int profId = scanner.nextInt();
+        int courseId = professor.getCourseIdFromProfessorId(profId);
+        List<EnrolledStudent> studentList = professor.getEnrolledStudents(profId, courseId);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         System.out.println("Please enter Course ID: ");
         String courseId = sc.nextLine();
-        professor.registerForCourses(courseId);
+        professor.registerForCourses(professorId, courseId);
         System.out.println("Successfully registered for the course.");
     }
 }

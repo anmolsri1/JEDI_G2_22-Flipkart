@@ -13,7 +13,7 @@ public interface ProfessorDaoInterface {
      * @param: courseCode: course code of the professor
      * @return: return the enrolled students for the corresponding professor and course code.
      */
-    public List<EnrolledStudent> getEnrolledStudents(String courseId);
+    public List<EnrolledStudent> getEnrolledStudents(int profId, int courseId);
 
     /**
      * Method to GradeConstant a student using SQL Commands
@@ -21,7 +21,7 @@ public interface ProfessorDaoInterface {
      * @param: courseCode: course code for the corresponding
      * @return: returns the status after adding the grade
      */
-    public Boolean addGrade(String studentId,String courseCode,String grade);
+    public Boolean addGrade(int studentId,int courseCode,int grade);
 
     /**
      * Method to Get professor name by id
@@ -30,4 +30,8 @@ public interface ProfessorDaoInterface {
      */
     public String getProfessorById(String profId);
 
+
+    void registerForCourses(int profId, int courseId);
+
+    int getCourseIdFromProfessorId(int profId);
 }
