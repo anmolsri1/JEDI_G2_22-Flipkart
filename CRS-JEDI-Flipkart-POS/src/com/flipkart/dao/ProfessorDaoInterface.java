@@ -13,7 +13,7 @@ public interface ProfessorDaoInterface {
      * @param: courseCode: course code of the professor
      * @return: return the enrolled students for the corresponding professor and course code.
      */
-    public List<EnrolledStudent> getEnrolledStudents(int profId, int courseId);
+    public List<EnrolledStudent> getEnrolledStudents(int courseId);
 
     /**
      * Method to GradeConstant a student using SQL Commands
