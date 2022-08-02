@@ -218,6 +218,27 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
         return courseList;
     }
+    public List<Course> viewProfCourses() {
+        this.statement = null;
+        List<Course> courseList = new ArrayList();
+
+        try {
+            String sql = "select courseId, courseName, seats from catalogue where professorId is NULL;
+            this.statement = this.connection.prepareStatement(sql);
+            ResultSet resultSet = this.statement.executeQuery();
+
+            while(resultSet.next()) {
+                Course course = new Course(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
+                courseList.add(course);
+            }
+
+            System.out.println("Number of courses in the Catalog are : " + courseList.size());
+        } catch (SQLException var5) {
+            System.out.println("Error: " + var5.getMessage());
+        }
+
+        return courseList;
+    }
 
     public List<Professor> viewProfessors() {
         this.statement = null;

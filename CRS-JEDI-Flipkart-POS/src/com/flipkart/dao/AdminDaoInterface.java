@@ -37,4 +37,6 @@ public interface AdminDaoInterface {
     void assignCourse(String var1, String var2) throws CourseNotFoundException, UserNotFoundException;
 
     void addUser(User var1) throws UserNotAddedException, UserIdAlreadyInUseException;
+
+    List<Course> viewProfCourses();
 }
