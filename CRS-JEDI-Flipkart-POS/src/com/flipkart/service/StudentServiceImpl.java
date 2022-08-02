@@ -31,7 +31,7 @@ public class StudentServiceImpl implements StudentInterface{
         String gender = scanner.nextLine();
         System.out.print("Enter semester: ");
         int semester = scanner.nextInt();
-        data.approvalStudent.add(new Student("S105",name,password,address,1,gender,"S105",1));
+        data.approvalStudent.add(new Student(1,name,password,address,1,gender,1,1));
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
         CRSApplication.showMenu(data);
     }
@@ -54,7 +54,6 @@ public class StudentServiceImpl implements StudentInterface{
         Scanner scanner = new Scanner((System.in));
         String choice = scanner.nextLine();
         boolean courseFound = false;
-//        System.out.println(courses);
         courses.forEach((course) -> {
             if(Objects.equals(choice,course.getCourseId())){
                 selCourses.add(course);
@@ -63,10 +62,8 @@ public class StudentServiceImpl implements StudentInterface{
                 data.selectedCourses.put("S101",sel);
                 viewSelectedCourses();
                 System.out.println("Course "+choice+" added successfully!");
-
             }
         });
-//        System.out.println("Course not in catalog");
     }
 
     @Override

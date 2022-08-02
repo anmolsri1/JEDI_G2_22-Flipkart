@@ -28,14 +28,14 @@ public class ProfessorMenu implements UserMenu {
         int option = scanner.nextInt();
         switch(option) {
             case 1:
-                System.out.println("ADD GRADES OPTION SELECTED.");
+                professor.addGrade();
                 break;
             case 2:
 //                System.out.println("VIEW ENROLLED STUDENTS OPTION SELECTED.");
                 professor.viewEnrolledStudents();
                 break;
             case 3:
-                System.out.println("REGISTER FOR COURSES OPTION SELECTED.");
+                professor.registerForCourses();
                 break;
             case 4:
                 CRSApplication.showMenu(data);
