@@ -80,7 +80,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
         List<Student> userList = new ArrayList();
         try {
-            String sql = "select id, name, password, type, gender, address, studentId, semester, department, isApproved, isReportGenerated from student, user where isApproved = 0 and studentId = userId";
+            String sql = "select id, name, password, type, gender, address, studentId, semester, student.department, isApproved, isReportGenerated from student, user where isApproved = 0 and studentId = id";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
             while(resultSet.next()) {
@@ -118,12 +118,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
 
         try {
-            String sql = "insert into user(id, name, password, role, gender, address) values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into user(id, name, password, type, gender, address) values (?, ?, ?, ?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setInt(1, user.getUserId());
             this.statement.setString(2, user.getName());
             this.statement.setString(3, user.getPassword());
-            this.statement.setString(4, user.getRole().toString());
+            this.statement.setInt(4, Role.toInt(user.getRole()));
             this.statement.setString(5, user.getGender().toString());
             this.statement.setString(6, user.getAddress());
             int row = this.statement.executeUpdate();
@@ -249,7 +249,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Professor professor = new Professor(resultSet.getInt(1), resultSet.getString(2), "*********", resultSet.getString(7), Role.stringToName(resultSet.getString(5)), Gender.stringToGender(resultSet.getString(3)), resultSet.getInt(8), resultSet.getString(4), resultSet.getString(5));
+                Professor professor = new Professor(resultSet.getInt(1), resultSet.getString(2), "*********", resultSet.getString(7), resultSet.getInt(5), Gender.stringToGender(resultSet.getString(3)), resultSet.getInt(8), resultSet.getString(4), resultSet.getString(5));
                 professorList.add(professor);
             }
 
