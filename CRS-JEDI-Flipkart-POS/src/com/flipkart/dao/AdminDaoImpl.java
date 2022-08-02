@@ -38,7 +38,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void removeCourse(String courseId) throws CourseNotFoundException, CourseNotDeletedException {
         this.statement = null;
         try {
-            String sql = "delete from catalogue where course_id = ?";
+            String sql = "delete from catalogue where courseId = ?";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setString(1, courseId);
             int row = this.statement.executeUpdate();
@@ -58,9 +58,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void addCourse(Course course) throws CourseExistsAlreadyException {
         this.statement = null;
         try {
-            String sql = "insert into catalogue(course_name, seats) values (?, ?)";
+            String sql = "insert into catalogue(courseId, courseName, seats) values (?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, course.getCourseName());
+            this.statement.setInt(1, course.getCourseId());
+            this.statement.setString(2, course.getCourseName());
             this.statement.setInt(3, course.getSeats());
             int row = this.statement.executeUpdate();
             System.out.println(row + " course added");
@@ -227,7 +228,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), 0);
                 courseList.add(course);
             }
 

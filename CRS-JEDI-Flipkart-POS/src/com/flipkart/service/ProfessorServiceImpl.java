@@ -16,11 +16,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
     @Override
     public void viewEnrolledStudents(int professorId) {
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
-        System.out.println("Enter you ID");
-        Scanner scanner = new Scanner(System.in);
-        int profId = scanner.nextInt();
-        scanner.nextLine();
-        int courseId = professor.getCourseIdFromProfessorId(profId);
+        int courseId = professor.getCourseIdFromProfessorId(professorId);
         List<EnrolledStudent> studentList = professor.getEnrolledStudents(courseId);
         studentList.forEach((student) -> {
             System.out.println(student.getStudentId()+"\t"+student.getCourseCode()+"\t"+student.getCourseName());
@@ -53,11 +49,12 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         courseList.forEach((course) -> {
             System.out.println(course.getCourseId()+"\t"+course.getCourseName());
         });
+        if (courseList.size() == 0) return;
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         System.out.println("Please enter Course ID: ");
         int courseId = sc.nextInt();
         sc.nextLine();
-        professor.registerForCourses(professorId,courseId);
+        professor.registerForCourses(professorId, courseId);
         System.out.println("Successfully registered for the course.");
     }
 }
