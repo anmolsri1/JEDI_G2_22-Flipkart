@@ -19,6 +19,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         System.out.println("Enter you ID");
         Scanner scanner = new Scanner(System.in);
         int profId = scanner.nextInt();
+        scanner.nextLine();
         int courseId = professor.getCourseIdFromProfessorId(profId);
         List<EnrolledStudent> studentList = professor.getEnrolledStudents(courseId);
         studentList.forEach((student) -> {
@@ -31,9 +32,11 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter Student ID: ");
         int studentId = sc.nextInt();
+        sc.nextLine();
 
         System.out.println("Please enter Course ID: ");
         int courseId = sc.nextInt();
+        sc.nextLine();
         System.out.println("Please enter Grade: ");
         String grade = sc.nextLine();
 //        data.mapGrades.put(student_id, new Pair<String, String>(course_id, grade)); // change this to add/update grade in registered courses table using SID and CID.
@@ -53,6 +56,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         System.out.println("Please enter Course ID: ");
         int courseId = sc.nextInt();
+        sc.nextLine();
         professor.registerForCourses(professorId,courseId);
         System.out.println("Successfully registered for the course.");
     }

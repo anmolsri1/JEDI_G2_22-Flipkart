@@ -24,6 +24,7 @@ public class ProfessorMenu implements UserMenu {
         Scanner scanner = new Scanner(System.in);
         ProfessorInterface professor = new ProfessorServiceImpl();
         int option = scanner.nextInt();
+        scanner.nextLine();
         switch(option) {
             case 1:
                 professor.addGrade();

@@ -1,13 +1,13 @@
 package com.flipkart.exception;
 
 public class UserIdAlreadyInUseException extends Exception {
-    private String userId;
+    private int userId;
 
-    public UserIdAlreadyInUseException(String id) {
+    public UserIdAlreadyInUseException(int id) {
         this.userId = id;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return this.userId;
     }
 

@@ -43,13 +43,13 @@ public class UserDaoImpl implements UserDaoInterface {
      * @return Update Password operation Status
      */
     @Override
-    public boolean updatePassword(String userId, String newPassword) {
+    public boolean updatePassword(int userId, String newPassword) {
         Connection connection=DBUtils.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.UPDATE_PASSWORD);
 
             statement.setString(1, newPassword);
-            statement.setString(2, userId);
+            statement.setInt(2, userId);
 
             int row = statement.executeUpdate();
 
@@ -88,7 +88,7 @@ public class UserDaoImpl implements UserDaoInterface {
         {
             //open db connection
             PreparedStatement preparedStatement=connection.prepareStatement(SqlQueriesConstant.VERIFY_CREDENTIALS);
-            preparedStatement.setString(1,userId);
+            preparedStatement.setInt(1,userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             System.out.println("Info: " + "inside verify");
@@ -129,7 +129,7 @@ public class UserDaoImpl implements UserDaoInterface {
      * @return RoleConstant
      */
     @Override
-    public String getRole(String userId)
+    public String getRole(int userId)
     {
         Connection connection = DBUtils.getConnection();
         try {
@@ -137,14 +137,14 @@ public class UserDaoImpl implements UserDaoInterface {
             connection=DBUtils.getConnection();
 
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_ROLE);
-            statement.setString(1, userId);
+            statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
             System.out.println("Info: query executed");
 
             if(rs.next())
             {
-                System.out.println("Info: " + rs.getString("role"));
-                return rs.getString("role");
+                System.out.println("Info: " + rs.getString("type"));
+                return rs.getString("type");
             }
 
         }

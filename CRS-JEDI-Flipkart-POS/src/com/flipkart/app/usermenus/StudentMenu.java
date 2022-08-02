@@ -26,6 +26,7 @@ public class StudentMenu implements UserMenu {
         Scanner scanner = new Scanner(System.in);
         StudentInterface student = new StudentServiceImpl();
         int option = scanner.nextInt();
+        scanner.nextLine();
         switch(option) {
             case 1:
                 student.addCourse(studentId);

@@ -25,7 +25,7 @@ public class DBUtils {
                 String url = "jdbc:mysql://localhost:3306/CRSDATABASE";
                 String user = "root";
                 String password = "postgres";
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();

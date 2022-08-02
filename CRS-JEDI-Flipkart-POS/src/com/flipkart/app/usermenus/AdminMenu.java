@@ -25,6 +25,7 @@ public class AdminMenu implements UserMenu {
         Scanner scanner = new Scanner(System.in);
         AdminInterface admin = new AdminServiceImpl();
         int option = scanner.nextInt();
+        scanner.nextLine();
         switch(option) {
             case 1:
                 admin.verifyStudent();

@@ -84,7 +84,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
             while(resultSet.next()) {
-                Student user = new Student(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getString(7), resultSet.getInt(8), resultSet.getString(9), resultSet.getBoolean(10), resultSet.getBoolean(11));
+                Student user = new Student(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(6), Role.stringToName(resultSet.getString(4)), Gender.stringToGender(resultSet.getString(5)), resultSet.getString(7), resultSet.getInt(8), resultSet.getString(9), resultSet.getBoolean(10), resultSet.getBoolean(11));
                 userList.add(user);
             }
             System.out.println(userList.size() + " students have pending-approval.");
@@ -120,7 +120,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         try {
             String sql = "insert into user(id, name, password, role, gender, address) values (?, ?, ?, ?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, user.getUserId());
+            this.statement.setInt(1, user.getUserId());
             this.statement.setString(2, user.getName());
             this.statement.setString(3, user.getPassword());
             this.statement.setString(4, user.getRole().toString());
@@ -156,7 +156,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         try {
             String sql = "insert into professor(professorId, department, position) values (?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, professor.getUserId());
+            this.statement.setInt(1, professor.getUserId());
             this.statement.setString(2, professor.getDepartment());
             this.statement.setString(3, professor.getPosition());
             int row = this.statement.executeUpdate();
@@ -173,21 +173,22 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
-    public void addCourse(String courseCode, String professorId) throws CourseNotFoundException, UserNotFoundException {
+    public void addCourse(String courseName, int professorId, int seats) throws CourseNotFoundException, UserNotFoundException {
         this.statement = null;
 
         try {
             String sql = "insert into catalogue(courseName, professorId, seats) values (?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, professorId);
-            this.statement.setString(2, courseCode);
+            this.statement.setInt(2, professorId);
+            this.statement.setString(1, courseName);
+            this.statement.setInt(3, seats);
             int row = this.statement.executeUpdate();
             System.out.println(row + " course assigned.");
             if (row == 0) {
-                System.out.println("Error: " + courseCode + " not found");
-                throw new CourseNotFoundException(courseCode);
+                System.out.println("Error: " + courseName + " not found");
+                throw new CourseNotFoundException(courseName);
             } else {
-                System.out.println("Course with courseCode: " + courseCode + " is assigned to professor with professorId: " + professorId + ".");
+                System.out.println("Course with courseCode: " + courseName + " is assigned to professor with professorId: " + professorId + ".");
             }
         } catch (SQLException var5) {
             System.out.println("Error: " + var5.getMessage());

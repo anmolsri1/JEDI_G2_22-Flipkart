@@ -25,7 +25,8 @@ public class UserServiceImpl implements UserInterface{
         UserDaoInterface user = new UserDaoImpl();
         boolean auth = user.verifyCredentials(username,password);
         Role role = null;
-        if(auth) {
+        if (auth) {
+            System.out.println("RRR");
             role = Role.stringToName(user.getRole(username));
         }
         return role;

@@ -1,13 +1,13 @@
 package com.flipkart.exception;
 
 public class ProfessorNotAddedException extends Exception {
-    private String professorId;
+    private int professorId;
 
-    public ProfessorNotAddedException(String id) {
+    public ProfessorNotAddedException(int id) {
         this.professorId = id;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return this.professorId;
     }
 

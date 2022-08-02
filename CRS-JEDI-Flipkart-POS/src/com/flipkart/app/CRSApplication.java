@@ -20,6 +20,7 @@ public class CRSApplication {
         System.out.print("Enter user input: ");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
+        scanner.nextLine();
         switch(choice) {
             case 1:
                 LoginMenu.showLoginMenu();

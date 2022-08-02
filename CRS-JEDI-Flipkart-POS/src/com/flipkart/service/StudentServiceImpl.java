@@ -26,6 +26,7 @@ public class StudentServiceImpl implements StudentInterface{
         String gender = scanner.nextLine();
         System.out.print("Enter semester: ");
         int semester = scanner.nextInt();
+        scanner.nextLine();
 
 //        data.approvalStudent.add(new Student(1,name,password,address,1,gender,1,1));
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
@@ -114,6 +115,7 @@ public class StudentServiceImpl implements StudentInterface{
 //            Scanner scanner = new Scanner(System.in);
 //            System.out.println("Select your preferred payment method: \n1. UPI \n2. Cash\n3. Netbanking");
 //            int choice = scanner.nextInt();
+//            scanner.nextLine();
 //            if(choice==2){
 //                System.out.println("You may deposit your fee at the accounts department.");
 //            }
