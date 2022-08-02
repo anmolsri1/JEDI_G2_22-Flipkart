@@ -2,8 +2,12 @@ package com.flipkart.service;
 
 import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Student;
+import com.flipkart.constant.Role;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
+import com.flipkart.dao.StudentDaoImpl;
+import com.flipkart.dao.StudentDaoInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +32,8 @@ public class StudentServiceImpl implements StudentInterface{
         int semester = scanner.nextInt();
         scanner.nextLine();
 
-//        data.approvalStudent.add(new Student(1,name,password,address,1,gender,1,1));
+        StudentDaoInterface student = new StudentDaoImpl();
+        student.addStudent(new Student(101,name,password, address, Role.stringToName("student"), Role.stringToName(gender), 101, 1, "dept", false, false))
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
 //        CRSApplication.showMenu(data);
     }
@@ -45,42 +50,24 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void addCourse(int studentId) {
-        List<Course> courses = viewCatalog();
-        List<Course> selCourses = viewSelectedCourses(studentId);
+        viewCatalog();
+        viewSelectedCourses(studentId);
         System.out.print("Select a course: ");
         Scanner scanner = new Scanner((System.in));
-        String choice = scanner.nextLine();
-        boolean courseFound = false;
-        courses.forEach((course) -> {
-            if(Objects.equals(choice,course.getCourseId())){
-                selCourses.add(course);
-                Catalog sel = new Catalog();
-                sel.courseList = selCourses;
-//                data.selectedCourses.put("S101",sel);
-                viewSelectedCourses(studentId);
-                System.out.println("Course "+choice+" added successfully!");
-            }
-        });
+        String courseId = scanner.nextInt();
+        scanner.nextLine();
+        StudentDaoInterface student = new StudentDaoImpl();
+        student.addCourse(studentId,courseId);
     }
 
     @Override
     public void dropCourse(int studentId) {
-        List<Course> selCourses = viewSelectedCourses(studentId);
+        viewSelectedCourses(studentId);
         System.out.print("Choose a course to drop: ");
         Scanner scanner = new Scanner((System.in));
-        String choice = scanner.nextLine();
-        List<Course> updateSelCourses = new ArrayList<Course>();
-//        Drop Course call function. replace the lines below.
-        selCourses.forEach((selCourse) -> {
-            if(!Objects.equals(selCourse.getCourseId(),choice)) {
-                updateSelCourses.add(selCourse);
-            }
-        });
-        Catalog sel = new Catalog();
-        sel.courseList = updateSelCourses;
-//        data.selectedCourses.put("S101",sel);
-        viewSelectedCourses(studentId);
-        System.out.println("Course "+choice+" dropped successfully!");
+        String courseId = scanner.nextLine();
+        StudentDaoInterface student = new StudentDaoImpl();
+        student.dropCourse(studentId,courseId);
     }
 
     @Override
@@ -95,12 +82,9 @@ public class StudentServiceImpl implements StudentInterface{
     @Override
     public List<Course> viewSelectedCourses(int studentId) {
         System.out.println("List of select courses: ");
-//        List<Course> courses = data.selectedCourses.get("S101").courseList;
-//        List<Course> courses = Catalog.getCourseList(studentID);
-//        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
-//
-//        return courses;
-        List<Course> courses = new ArrayList<>();
+        StudentDaoInterface student = new StudentDaoImpl();
+        List<Course> courses = student.viewSelectedCourses(studentId);
+        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
         return courses;
     }
 
