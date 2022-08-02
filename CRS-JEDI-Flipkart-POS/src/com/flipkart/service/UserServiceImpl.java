@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserInterface{
             ProfessorDaoInterface professor = new ProfessorDaoImpl();
             System.out.println("Welcome "+professor.getProfessorById(username) + "!!!");
             if(role==STUDENT) {
-                StudentDaoInterface student = new StudentServiceImpl();
+                StudentDaoInterface student = new StudentDaoImpl();
                 if(!student.isApproved(username)) {
                     return null;
                 }
