@@ -3,6 +3,7 @@ package com.flipkart.service;
 import com.flipkart.app.CRSApplication;
 import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
@@ -47,17 +48,22 @@ public class StudentServiceImpl implements StudentInterface{
     @Override
     public void viewGrades(int studentId) {
         // use regcourses table to get grades for courses for SID and use courses table to get course names
-        System.out.println("Subject 1: A");
-        System.out.println("Subject 2: A");
-        System.out.println("Subject 3: A");
-        System.out.println("Subject 4: A");
-        System.out.println("Overall: A");
+        StudentDaoInterface student = new StudentDaoImpl();
+        List<RegisteredCourse> courses = student.viewGrades(studentId);
+        courses.forEach((course) -> {
+            System.out.println("Course ID"+"\t");
+            System.out.println(course.getCourseId() + "\t" + course.getGrade());
+        });
     }
 
     @Override
     public void addCourse(int studentId) {
         viewCatalog();
-        viewSelectedCourses(studentId);
+        List<Course> selectedCourses = viewSelectedCourses(studentId);
+        if(selectedCourses.size()==6){
+            System.out.println("You have already selected 6 courses!!!");
+            return;
+        }
         System.out.print("Select a course: ");
         Scanner scanner = new Scanner((System.in));
         int courseId = scanner.nextInt();
@@ -68,7 +74,11 @@ public class StudentServiceImpl implements StudentInterface{
 
     @Override
     public void dropCourse(int studentId) {
-        viewSelectedCourses(studentId);
+        List<Course> selectedCourses = viewSelectedCourses(studentId);
+        if(selectedCourses.size()==0){
+            System.out.println("You have no courses to drop!!!");
+            return;
+        }
         System.out.print("Choose a course to drop: ");
         Scanner scanner = new Scanner((System.in));
         int courseId = scanner.nextInt();
