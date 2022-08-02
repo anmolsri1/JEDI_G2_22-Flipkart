@@ -42,7 +42,6 @@ public class ProfessorServiceImpl implements ProfessorInterface{
 //        data.mapGrades.put(student_id, new Pair<String, String>(course_id, grade)); // change this to add/update grade in registered courses table using SID and CID.
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         professor.addGrade(studentId, courseId, grade);
-
     }
 
     @Override
