@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserInterface{
             if(role==STUDENT) {
                 StudentDaoInterface student = new StudentDaoImpl();
                 if(!student.isApproved(username)) {
+                    System.out.print("You have not been approved or ");
                     return null;
                 }
             }
