@@ -84,7 +84,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
      * @return Professor Id in string
      */
     @Override
-    public String getProfessorById(String profId) {
+    public String getProfessorById(int profId) {
         String prof_Name = null;
         Connection connection=DBUtils.getConnection();
         try
