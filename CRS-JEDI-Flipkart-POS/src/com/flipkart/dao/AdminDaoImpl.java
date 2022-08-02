@@ -123,7 +123,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             this.statement.setInt(1, user.getUserId());
             this.statement.setString(2, user.getName());
             this.statement.setString(3, user.getPassword());
-            this.statement.setString(4, user.getRole().toString());
+            this.statement.setInt(4, Role.toInt(user.getRole()));
             this.statement.setString(5, user.getGender().toString());
             this.statement.setString(6, user.getAddress());
             int row = this.statement.executeUpdate();
