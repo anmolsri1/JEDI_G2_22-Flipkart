@@ -14,7 +14,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
     /**
      * Default Constructor
      */
-    private StudentDaoImpl()
+    public StudentDaoImpl()
     {
 
     }

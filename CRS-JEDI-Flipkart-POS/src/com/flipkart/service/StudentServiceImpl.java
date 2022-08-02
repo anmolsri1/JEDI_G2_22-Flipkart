@@ -8,6 +8,7 @@ import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
 import com.flipkart.dao.StudentDaoImpl;
 import com.flipkart.dao.StudentDaoInterface;
+import com.flipkart.exception.StudentNotRegisteredException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class StudentServiceImpl implements StudentInterface{
 //    DummyData data;
     public StudentServiceImpl() {}
     @Override
-    public void register() {
+    public void register() throws StudentNotRegisteredException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name: ");
         String name = scanner.nextLine();
@@ -33,7 +34,7 @@ public class StudentServiceImpl implements StudentInterface{
         scanner.nextLine();
 
         StudentDaoInterface student = new StudentDaoImpl();
-        student.addStudent(new Student(101,name,password, address, Role.stringToName("student"), Role.stringToName(gender), 101, 1, "dept", false, false))
+        student.addStudent(new Student(101,name,password, address, Role.stringToName("student"), Role.stringToName(gender), 101, 1, "dept", false, false));
         System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
 //        CRSApplication.showMenu(data);
     }
@@ -54,7 +55,7 @@ public class StudentServiceImpl implements StudentInterface{
         viewSelectedCourses(studentId);
         System.out.print("Select a course: ");
         Scanner scanner = new Scanner((System.in));
-        String courseId = scanner.nextInt();
+        int courseId = scanner.nextInt();
         scanner.nextLine();
         StudentDaoInterface student = new StudentDaoImpl();
         student.addCourse(studentId,courseId);
