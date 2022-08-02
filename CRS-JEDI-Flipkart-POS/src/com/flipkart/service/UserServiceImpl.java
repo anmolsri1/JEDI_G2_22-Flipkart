@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserInterface{
         Scanner scanner = new Scanner(System.in);
         int userId = scanner.nextInt();
         scanner.nextLine();
+        System.out.print("Enter new password: ");
         String newPassword = scanner.nextLine();
         UserDaoInterface user = new UserDaoImpl();
         user.updatePassword(userId, newPassword);
