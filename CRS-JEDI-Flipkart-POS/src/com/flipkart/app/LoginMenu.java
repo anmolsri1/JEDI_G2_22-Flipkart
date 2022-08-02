@@ -10,7 +10,9 @@ import com.flipkart.exception.*;
 import com.flipkart.service.UserInterface;
 import com.flipkart.service.UserServiceImpl;
 
+import java.util.Date;
 import java.util.Scanner;
+import java.time.*;
 
 public class LoginMenu {
     public static void showLoginMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
@@ -29,7 +31,11 @@ public class LoginMenu {
             System.out.println("Wrong credentials...");
             return;
         }
+        Date currentDate = new Date();
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
 
+        System.out.println("Logged in at: " + localDate + " " + localTime);
         UserMenu userMenu = null;
         switch(role) {
             case STUDENT:
