@@ -15,18 +15,18 @@ import java.util.List;
 
 public class ProfessorDaoImpl implements ProfessorDaoInterface {
     @Override
-    public List<EnrolledStudent> getEnrolledStudents(int courseId) {
+    public List<EnrolledStudent> getEnrolledStudents(int professorId) {
         Connection connection=DBUtils.getConnection();
         List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
         try {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_ENROLLED_STUDENTS);
-            statement.setInt(1, courseId);
+            statement.setInt(1, professorId);
 
             ResultSet results = statement.executeQuery();
             while(results.next())
             {
                 //public EnrolledStudent(String courseCode, String courseName, int studentId)
-                enrolledStudents.add(new EnrolledStudent(results.getString("courseCode"),results.getString("courseName"),results.getString("studentId")));
+                enrolledStudents.add(new EnrolledStudent(results.getString("courseId"),results.getString("courseName"),results.getString("studentId")));
             }
         }
         catch(SQLException err)

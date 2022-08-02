@@ -17,7 +17,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
     public void viewEnrolledStudents(int professorId) {
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         int courseId = professor.getCourseIdFromProfessorId(professorId);
-        List<EnrolledStudent> studentList = professor.getEnrolledStudents(courseId);
+        List<EnrolledStudent> studentList = professor.getEnrolledStudents(professorId);
         studentList.forEach((student) -> {
             System.out.println(student.getStudentId()+"\t"+student.getCourseCode()+"\t"+student.getCourseName());
         });
