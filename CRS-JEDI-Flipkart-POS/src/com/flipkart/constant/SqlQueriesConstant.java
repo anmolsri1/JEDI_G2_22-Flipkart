@@ -51,7 +51,7 @@ public class SqlQueriesConstant {
     public static final String GET_ROLE="select type from user where id = ?;";
     public static final String GET_COURSES="select * from catalogue where professorId=?";
     public static final String GET_ENROLLED_STUDENTS="select catalogue.courseId,catalogue.courseName,registeredCourse.studentId from course inner join registeredCourse on course.courseId = registeredCourse.courseId where catalogue.professorId = ? order by catalogue.courseId";
-    public static final String ADD_GRADE="update registeredCourse set Grade=? where courseId=? and studentId=?";
+    public static final String ADD_GRADE="update registeredCourse set grade=? where courseId=? and studentId=?";
     public static final String GET_PROF_NAME = "select name from user where id = ?";
     public static final String REGISTER_FOR_COURSE = "update catalogue set professorId = ? where courseId = ?";
     public static final String GET_COURSE_ID_FROM_PROF_ID = "select courseId from catalogue where professorId = ?";

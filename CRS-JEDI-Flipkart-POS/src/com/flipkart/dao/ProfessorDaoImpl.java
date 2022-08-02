@@ -64,6 +64,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         }
         catch(SQLException err)
         {
+            err.printStackTrace();
             System.out.println("Error: " + err.getMessage());
         }
         finally

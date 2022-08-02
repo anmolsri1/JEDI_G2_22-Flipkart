@@ -33,9 +33,10 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         System.out.println("Please enter Course ID: ");
         int courseId = sc.nextInt();
         sc.nextLine();
+
         System.out.println("Please enter Grade: ");
         String grade = sc.nextLine();
-//        data.mapGrades.put(student_id, new Pair<String, String>(course_id, grade)); // change this to add/update grade in registered courses table using SID and CID.
+
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         professor.addGrade(studentId, courseId, grade);
     }
