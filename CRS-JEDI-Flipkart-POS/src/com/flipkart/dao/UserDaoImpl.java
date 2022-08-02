@@ -91,14 +91,14 @@ public class UserDaoImpl implements UserDaoInterface {
             preparedStatement.setInt(1,userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            System.out.println("Info: " + "inside verify");
+//            System.out.println("Info: " + "inside verify");
 
             if(!resultSet.next())
                 throw new UserNotFoundException(userId);
 
             else if(password.equals(resultSet.getString("password")))
             {
-                System.out.println("Info: " + "inside equals");
+//                System.out.println("Info: " + "inside equals");
                 return true;
             }
             else
@@ -133,17 +133,17 @@ public class UserDaoImpl implements UserDaoInterface {
     {
         Connection connection = DBUtils.getConnection();
         try {
-            System.out.println("Info: " + userId);
+//            System.out.println("Info: " + userId);
             connection=DBUtils.getConnection();
 
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_ROLE);
             statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
-            System.out.println("Info: query executed");
+//            System.out.println("Info: query executed");
 
             if(rs.next())
             {
-                System.out.println("Info: " + rs.getInt("type"));
+//                System.out.println("Info: " + rs.getInt("type"));
                 return rs.getInt("type");
             }
 

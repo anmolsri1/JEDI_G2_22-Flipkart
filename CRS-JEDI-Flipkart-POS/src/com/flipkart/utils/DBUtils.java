@@ -9,11 +9,11 @@ public class DBUtils {
         if (connection != null) {
         	try {
         		if (connection.isClosed()) {
-                	System.out.println("Connection closed!");
+//                	System.out.println("Connection closed!");
                 	connection = null;
                 	return getConnection();
                 } else {
-                	System.out.println("Connection working!");
+//                	System.out.println("Connection working!");
                 	return connection;
                 }
         	} catch (SQLException e) {
