@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserInterface{
             System.out.println(user.getRole(username));
             System.out.println(role.toString());
             ProfessorDaoInterface professor = new ProfessorDaoImpl();
-            System.out.println(professor.getProfessorById("Welcome "+username + "!!!"));
+            System.out.println("Welcome "+professor.getProfessorById(username) + "!!!");
         }
         return role;
     }
