@@ -71,7 +71,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
                 preparedStatementStudent=connection.prepareStatement(SqlQueriesConstant.ADD_STUDENT, Statement.RETURN_GENERATED_KEYS);
                 preparedStatementStudent.setInt(1,student.getUserId());
                 preparedStatementStudent.setString(2, student.getDepartment());
-                //preparedStatementStudent.setBoolean(4, true);
+                preparedStatementStudent.setInt(3, student.getSemester());
                 preparedStatementStudent.executeUpdate();
                 ResultSet results=preparedStatementStudent.getGeneratedKeys();
                 if(results.next())
@@ -82,6 +82,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
         }
         catch(Exception ex)
         {
+            ex.printStackTrace();
             throw new StudentNotRegisteredException(ex.getMessage());
         }
         finally
