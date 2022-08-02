@@ -75,13 +75,10 @@ public class AdminServiceImpl implements AdminInterface{
         scanner.nextLine();
         System.out.print("Enter course name: ");
         String courseName = scanner.nextLine();
-        System.out.print("Enter instructor's name: ");
-        int instructor = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("Enter no. of seats: ");
         int seats = scanner.nextInt();
         scanner.nextLine();
-        Course course = new Course(courseId,courseName,seats ,instructor);
+        Course course = new Course(courseId,courseName,seats ,0);
 
         AdminDaoInterface admin = new AdminDaoImpl();
         admin.addCourse(course);
