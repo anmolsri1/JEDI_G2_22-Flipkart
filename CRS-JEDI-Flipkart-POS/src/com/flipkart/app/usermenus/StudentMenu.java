@@ -1,6 +1,7 @@
 package com.flipkart.app.usermenus;
 
 import com.flipkart.app.CRSApplication;
+import com.flipkart.exception.*;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 
@@ -12,7 +13,7 @@ public class StudentMenu implements UserMenu {
         this.studentId = studentId;
     }
     @Override
-    public void showMenu() {
+    public void showMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
         System.out.println("----------Student Menu----------");
         System.out.println("1. Add Course");
         System.out.println("2. Drop Course");

@@ -6,14 +6,14 @@ import com.flipkart.app.usermenus.StudentMenu;
 import com.flipkart.app.usermenus.UserMenu;
 import com.flipkart.bean.User;
 import com.flipkart.constant.Role;
-import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.exception.*;
 import com.flipkart.service.UserInterface;
 import com.flipkart.service.UserServiceImpl;
 
 import java.util.Scanner;
 
 public class LoginMenu {
-    public static void showLoginMenu() throws UserNotFoundException {
+    public static void showLoginMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
         System.out.println("Login menu.");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Username: ");

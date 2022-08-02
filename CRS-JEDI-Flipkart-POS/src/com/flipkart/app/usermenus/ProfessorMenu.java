@@ -1,17 +1,20 @@
 package com.flipkart.app.usermenus;
 
 import com.flipkart.app.CRSApplication;
+import com.flipkart.exception.*;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorServiceImpl;
 
 import java.util.Scanner;
 
 public class ProfessorMenu implements UserMenu {
+    private int professorId;
     public ProfessorMenu(int professorId) {
+        this.professorId = professorId;
     }
 
     @Override
-    public void showMenu() {
+    public void showMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
         System.out.println("----------Professor Menu----------");
         System.out.println("1. Add Grades");
         System.out.println("2. View Enrolled Students");
@@ -27,10 +30,10 @@ public class ProfessorMenu implements UserMenu {
                 break;
             case 2:
 //                System.out.println("VIEW ENROLLED STUDENTS OPTION SELECTED.");
-                professor.viewEnrolledStudents();
+                professor.viewEnrolledStudents(professorId);
                 break;
             case 3:
-                professor.registerForCourses();
+                professor.registerForCourses(professorId);
                 break;
             case 4:
                 CRSApplication.showMenu();
