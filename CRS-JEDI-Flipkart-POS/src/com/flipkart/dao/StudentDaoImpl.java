@@ -210,18 +210,21 @@ public class StudentDaoImpl implements StudentDaoInterface {
             statement.setInt(1, studentId);
             ResultSet rs = statement.executeQuery();
 
-            int cid = -1;
-            if(rs.next())
+            List<Integer> clist = new ArrayList<>();
+            while(rs.next())
             {
-                cid = rs.getInt("courseId");
+                int cid = rs.getInt("courseId");
+                clist.add(cid);
             }
 
-            statement = connection.prepareStatement(SqlQueriesConstant.GET_COURSES_BY_ID);
-            statement.setInt(1, cid);
-            rs = statement.executeQuery();
-            while(rs.next()) {
-                Course course = new Course(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
-                courses.add(course);
+            for(int i = 0; i < clist.size(); i++ ) {
+                statement = connection.prepareStatement(SqlQueriesConstant.GET_COURSES_BY_ID);
+                statement.setInt(1, clist.get(i));
+                rs = statement.executeQuery();
+                while(rs.next()) {
+                    Course course = new Course(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+                    courses.add(course);
+                }
             }
         }
         catch(SQLException err)

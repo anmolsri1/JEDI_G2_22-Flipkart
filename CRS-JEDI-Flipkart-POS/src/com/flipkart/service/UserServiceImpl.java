@@ -1,14 +1,13 @@
 package com.flipkart.service;
 
 import com.flipkart.constant.Role;
-import com.flipkart.dao.ProfessorDaoImpl;
-import com.flipkart.dao.ProfessorDaoInterface;
-import com.flipkart.dao.UserDaoImpl;
-import com.flipkart.dao.UserDaoInterface;
+import com.flipkart.dao.*;
 import com.flipkart.exception.UserNotFoundException;
 
 import java.util.List;
 import java.util.Scanner;
+
+import static com.flipkart.constant.Role.STUDENT;
 
 public class UserServiceImpl implements UserInterface{
     public UserServiceImpl() {
@@ -43,6 +42,12 @@ public class UserServiceImpl implements UserInterface{
 //            System.out.println(role.toString());
             ProfessorDaoInterface professor = new ProfessorDaoImpl();
             System.out.println("Welcome "+professor.getProfessorById(username) + "!!!");
+            if(role==STUDENT) {
+                StudentDaoInterface student = new StudentServiceImpl();
+                if(!student.isApproved(username)) {
+                    return null;
+                }
+            }
         }
         return role;
     }
