@@ -1,6 +1,7 @@
 package com.flipkart.service;
 
 import com.flipkart.app.usermenus.ProfessorMenu;
+import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
@@ -18,10 +19,13 @@ public class ProfessorServiceImpl implements ProfessorInterface{
     @Override
     public void viewEnrolledStudents(int professorId) {
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
-        int courseId = professor.getCourseIdFromProfessorId(professorId);
-        List<Student> studentList = professor.getEnrolledStudents(courseId);
+        System.out.println("Enter you ID");
+        Scanner scanner = new Scanner(System.in);
+        int profId = scanner.nextInt();
+        int courseId = professor.getCourseIdFromProfessorId(profId);
+        List<EnrolledStudent> studentList = professor.getEnrolledStudents(courseId);
         studentList.forEach((student) -> {
-            System.out.println(student.getStudentId()+"\t"+student.getName()+"\t"+student.getGender()+"\t"+student.getSemester());
+            System.out.println(student.getStudentId()+"\t"+student.getCourseCode()+"\t"+student.getCourseName());
         });
     }
 
@@ -38,7 +42,6 @@ public class ProfessorServiceImpl implements ProfessorInterface{
 //        data.mapGrades.put(student_id, new Pair<String, String>(course_id, grade)); // change this to add/update grade in registered courses table using SID and CID.
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
         professor.addGrade(studentId, courseId, grade);
-
     }
 
     @Override
