@@ -1,5 +1,10 @@
 package com.flipkart.service;
 
+import com.flipkart.constant.Role;
+import com.flipkart.dao.UserDaoImpl;
+import com.flipkart.dao.UserDaoInterface;
+import com.flipkart.exception.UserNotFoundException;
+
 public class UserServiceImpl implements UserInterface{
     public UserServiceImpl() {
 
@@ -15,7 +20,14 @@ public class UserServiceImpl implements UserInterface{
     }
 
     @Override
-    public boolean verifyCredentials(String username, String password, String role) {
-        return true;
+    public Role verifyCredentials(int username, String password) throws UserNotFoundException {
+
+        UserDaoInterface user = new UserDaoImpl();
+        boolean auth = user.verifyCredentials(username,password);
+        Role role = null;
+        if(auth) {
+            role = Role.stringToName(user.getRole(username));
+        }
+        return role;
     }
 }

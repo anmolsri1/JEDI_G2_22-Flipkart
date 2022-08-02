@@ -15,7 +15,7 @@ public class UserDaoImpl implements UserDaoInterface {
     /**
      * Default Constructor
      */
-    private UserDaoImpl()
+    public UserDaoImpl()
     {
 
     }
@@ -82,7 +82,7 @@ public class UserDaoImpl implements UserDaoInterface {
      * @throws UserNotFoundException
      */
     @Override
-    public boolean verifyCredentials(String userId, String password) throws UserNotFoundException {
+    public boolean verifyCredentials(int userId, String password) throws UserNotFoundException {
         Connection connection = DBUtils.getConnection();
         try
         {

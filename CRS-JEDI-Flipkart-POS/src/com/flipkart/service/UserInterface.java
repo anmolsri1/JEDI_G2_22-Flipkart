@@ -1,8 +1,11 @@
 package com.flipkart.service;
 
 
+import com.flipkart.constant.Role;
+import com.flipkart.exception.UserNotFoundException;
+
 public interface UserInterface {
     void getUserDetails();
     void updatePassword();
-    boolean verifyCredentials(String name, String password, String role);
+    Role verifyCredentials(int name, String password) throws UserNotFoundException;
 }

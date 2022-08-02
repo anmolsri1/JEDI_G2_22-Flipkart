@@ -7,7 +7,7 @@ import com.flipkart.service.StudentServiceImpl;
 import java.util.Scanner;
 
 public class StudentMenu implements UserMenu {
-    public StudentMenu() {
+    public StudentMenu(int studentId) {
     }
     @Override
     public void showMenu() {

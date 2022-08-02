@@ -9,7 +9,7 @@ import com.flipkart.service.StudentServiceImpl;
 import java.util.Scanner;
 
 public class ProfessorMenu implements UserMenu {
-    public ProfessorMenu() {
+    public ProfessorMenu(int professorId) {
     }
 
     @Override
