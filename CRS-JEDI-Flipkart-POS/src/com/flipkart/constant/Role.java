@@ -43,4 +43,17 @@ public enum Role {
 
         return userRole;
     }
+
+    public static int toInt(Role role) {
+        int userRole = 0;
+        if (role == ADMIN) {
+            userRole = 1;
+        } else if (role == PROFESSOR) {
+            userRole = 3;
+        } else if (role == STUDENT) {
+            userRole = 2;
+        }
+
+        return userRole;
+    }
 }

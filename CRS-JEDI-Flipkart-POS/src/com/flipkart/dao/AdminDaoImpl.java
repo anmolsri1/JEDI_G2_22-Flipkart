@@ -38,7 +38,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void removeCourse(String courseId) throws CourseNotFoundException, CourseNotDeletedException {
         this.statement = null;
         try {
-            String sql = "delete from catalogue where course_id = ?";
+            String sql = "delete from catalogue where courseId = ?";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setString(1, courseId);
             int row = this.statement.executeUpdate();
@@ -58,9 +58,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void addCourse(Course course) throws CourseExistsAlreadyException {
         this.statement = null;
         try {
-            String sql = "insert into catalogue(course_name, seats) values (?, ?)";
+            String sql = "insert into catalogue(courseId, courseName, seats) values (?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
-            this.statement.setString(1, course.getCourseName());
+            this.statement.setInt(1, course.getCourseId());
+            this.statement.setString(2, course.getCourseName());
             this.statement.setInt(3, course.getSeats());
             int row = this.statement.executeUpdate();
             System.out.println(row + " course added");
@@ -80,7 +81,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
         List<Student> userList = new ArrayList();
         try {
-            String sql = "select id, name, password, type, gender, address, studentId, semester, department, isApproved, isReportGenerated from student, user where isApproved = 0 and studentId = userId";
+            String sql = "select id, name, password, type, gender, address, studentId, semester, student.department, isApproved, isReportGenerated from student, user where isApproved = 0 and studentId = id";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
             while(resultSet.next()) {
@@ -118,12 +119,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         this.statement = null;
 
         try {
-            String sql = "insert into user(id, name, password, role, gender, address) values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into user(id, name, password, type, gender, address) values (?, ?, ?, ?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setInt(1, user.getUserId());
             this.statement.setString(2, user.getName());
             this.statement.setString(3, user.getPassword());
-            this.statement.setString(4, user.getRole().toString());
+            this.statement.setInt(4, Role.toInt(user.getRole()));
             this.statement.setString(5, user.getGender().toString());
             this.statement.setString(6, user.getAddress());
             int row = this.statement.executeUpdate();
@@ -227,7 +228,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), 0);
                 courseList.add(course);
             }
 
@@ -249,7 +250,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Professor professor = new Professor(resultSet.getInt(1), resultSet.getString(2), "*********", resultSet.getString(7), Role.stringToName(resultSet.getString(5)), Gender.stringToGender(resultSet.getString(3)), resultSet.getInt(8), resultSet.getString(4), resultSet.getString(5));
+                Professor professor = new Professor(resultSet.getInt(1), resultSet.getString(2), "*********", resultSet.getString(7), resultSet.getInt(5), Gender.stringToGender(resultSet.getString(3)), resultSet.getInt(8), resultSet.getString(4), resultSet.getString(5));
                 professorList.add(professor);
             }
 

@@ -1,11 +1,10 @@
 package com.flipkart.bean;
 
-import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 
 public class Student extends User{
     private String department;
-    private String studentId;
+    private int studentId;
     private int semester;
     private boolean isApproved;
     private boolean isReportGenerated;
@@ -47,7 +46,7 @@ public class Student extends User{
         this.isReportGenerated = isReportGenerated;
     }
 
-    public Student(int userId, String name, String password, String address, Role role, Gender gender, String studentId, int semester, String department, boolean isApproved, boolean isReportGenerated) {
+    public Student(int userId, String name, String password, String address, Role role, Role gender, int studentId, int semester, String department, boolean isApproved, boolean isReportGenerated) {
         super(userId, name, password, address, role, gender);
         this.studentId = studentId;
         this.semester = semester;
