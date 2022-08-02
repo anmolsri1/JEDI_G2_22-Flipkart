@@ -5,7 +5,6 @@ import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
-import com.flipkart.dao.DummyData;
 import com.flipkart.exception.*;
 
 import java.util.ArrayList;
@@ -14,9 +13,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class AdminServiceImpl implements AdminInterface{
-    DummyData data;
-    public AdminServiceImpl(DummyData data) {
-        this.data = data;
+    public AdminServiceImpl() {
     }
     @Override
     public void verifyStudent() throws StudentNotFoundForApprovalException {

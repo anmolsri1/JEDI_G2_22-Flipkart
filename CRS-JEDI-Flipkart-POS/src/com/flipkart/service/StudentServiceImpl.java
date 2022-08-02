@@ -6,7 +6,6 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
-import com.flipkart.dao.DummyData;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,19 +1,17 @@
 package com.flipkart.app.usermenus;
 
 import com.flipkart.app.CRSApplication;
-import com.flipkart.dao.DummyData;
+import com.flipkart.exception.*;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
 
 import java.util.Scanner;
 
 public class AdminMenu implements UserMenu {
-    DummyData data;
-    public AdminMenu(DummyData data) {
-        this.data = data;
+    public AdminMenu() {
     }
     @Override
-    public void showMenu() {
+    public void showMenu() throws StudentNotFoundForApprovalException, UserIdAlreadyInUseException, ProfessorNotAddedException, CourseExistsAlreadyException, CourseNotDeletedException, CourseNotFoundException {
         System.out.println("----------Admin Menu----------");
         System.out.println("1. Verify Students");
         System.out.println("2. Add Professor");
@@ -23,7 +21,7 @@ public class AdminMenu implements UserMenu {
         System.out.println("6. Logout");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
-        AdminInterface admin = new AdminServiceImpl(data);
+        AdminInterface admin = new AdminServiceImpl();
         int option = scanner.nextInt();
         switch(option) {
             case 1:
@@ -42,7 +40,7 @@ public class AdminMenu implements UserMenu {
                 admin.removeCourse();
                 break;
             case 6:
-                CRSApplication.showMenu(data);
+                CRSApplication.showMenu();
                 break;
             default:
                 System.out.println("Please select a valid option.");

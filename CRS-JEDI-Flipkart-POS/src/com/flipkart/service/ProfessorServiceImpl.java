@@ -10,9 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProfessorServiceImpl implements ProfessorInterface{
-    DummyData data;
-    public ProfessorServiceImpl(DummyData data) {
-        this.data = data;
+    public ProfessorServiceImpl() {
+
     }
     @Override
     public void viewEnrolledStudents(int professorId) {

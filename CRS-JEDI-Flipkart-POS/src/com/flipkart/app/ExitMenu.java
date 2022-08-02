@@ -1,9 +1,7 @@
 package com.flipkart.app;
 
-import com.flipkart.dao.DummyData;
-
 public class ExitMenu {
-    public static void showExitMenu(DummyData data) {
+    public static void showExitMenu() {
         System.out.println("this is the exit menu.");
     }
 }

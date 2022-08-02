@@ -1,18 +1,15 @@
 package com.flipkart.app;
 
-import com.flipkart.dao.DummyData;
-
 import java.util.Scanner;
 
 public class CRSApplication {
     public static void main(String[] args) {
-        DummyData data = new DummyData();
 //        while(true){
-            showMenu(data);
+            showMenu();
 //        }
     }
 
-    public static void showMenu(DummyData data) {
+    public static void showMenu() {
         System.out.println("--------Welcome to CRS Menu--------");
         System.out.println("1. Login");
         System.out.println("2. Student Registration");
@@ -23,16 +20,16 @@ public class CRSApplication {
         int choice = scanner.nextInt();
         switch(choice) {
             case 1:
-                LoginMenu.showLoginMenu(data);
+                LoginMenu.showLoginMenu();
                 break;
             case 2:
-                StudentRegistrationMenu.showStudentRegistrationMenu(data);
+                StudentRegistrationMenu.showStudentRegistrationMenu();
                 break;
             case 3:
-                UpdatePasswordMenu.showUpdatePasswordMenu(data);
+                UpdatePasswordMenu.showUpdatePasswordMenu();
                 break;
             case 4:
-                ExitMenu.showExitMenu(data);
+                ExitMenu.showExitMenu();
                 break;
             default:
                 System.out.println("Please select a valid option.");
