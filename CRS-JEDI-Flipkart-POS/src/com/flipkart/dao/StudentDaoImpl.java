@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
@@ -219,6 +221,37 @@ public class StudentDaoImpl implements StudentDaoInterface {
             rs = statement.executeQuery();
             while(rs.next()) {
                 Course course = new Course(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+                courses.add(course);
+            }
+        }
+        catch(SQLException err)
+        {
+            System.out.println("Error: " + err.getMessage());
+        }
+        finally
+        {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return courses;
+    }
+
+    @Override
+    public List<RegisteredCourse> viewGrades(int studentId) {
+        Connection connection=DBUtils.getConnection();
+        List<RegisteredCourse> courses = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.GET_REGISTERED_COURSES_BY_ID);
+            statement.setInt(1, studentId);
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()) {
+                RegisteredCourse course = new RegisteredCourse(rs.getInt(1), rs.getInt(2), rs.getObject(3, Grade.class), rs.getInt(4));
                 courses.add(course);
             }
         }

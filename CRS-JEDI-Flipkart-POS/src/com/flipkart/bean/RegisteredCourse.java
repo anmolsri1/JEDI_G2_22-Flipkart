@@ -6,6 +6,17 @@ public class RegisteredCourse {
     private Grade grade;
     private int semester;
 
+    public RegisteredCourse(int courseId, int studentId, Grade grade, int semester) {
+        this.courseId = courseId;
+        this.studentId = studentId;
+        this.grade = grade;
+        this.semester = semester;
+    }
+
+    public RegisteredCourse() {
+
+    }
+
     public int getCourseId() {
         return courseId;
     }

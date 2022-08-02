@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.StudentNotRegisteredException;
 
@@ -35,4 +36,6 @@ public interface StudentDaoInterface {
     void dropCourse(int studentId, int courseId);
 
     List<Course> viewSelectedCourses(int studentId);
+
+    List<RegisteredCourse> viewGrades(int studentId);
 }
