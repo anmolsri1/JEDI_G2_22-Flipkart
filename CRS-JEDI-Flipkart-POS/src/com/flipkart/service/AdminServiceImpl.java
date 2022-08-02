@@ -22,6 +22,7 @@ public class AdminServiceImpl implements AdminInterface{
         studentList.forEach(student -> {
             System.out.println(student.getStudentId()+"\t"+student.getName()+" "+student.getAddress()+" "+student.getGender()+" "+student.getSemester());
         });
+        if (studentList.size() == 0) return;
         System.out.println("Enter a student ID to approve: ");
         Scanner scanner = new Scanner(System.in);
         int studentId = scanner.nextInt();
@@ -34,6 +35,9 @@ public class AdminServiceImpl implements AdminInterface{
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
+        System.out.print("Enter id: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
         System.out.print("Enter address: ");
@@ -45,7 +49,7 @@ public class AdminServiceImpl implements AdminInterface{
         System.out.print("Enter position: ");
         String position = scanner.nextLine();
 
-        Professor professor = new Professor(1, name, password, address, Role.stringToName("professor"), Gender.stringToGender(gender), 1, department, position);
+        Professor professor = new Professor(id, name, password, address, Role.stringToName("professor"), Gender.stringToGender(gender), 1, department, position);
         AdminDaoInterface admin = new AdminDaoImpl();
         admin.addProfessor(professor);
     }
