@@ -3,8 +3,6 @@ package com.flipkart.app.usermenus;
 import com.flipkart.app.CRSApplication;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorServiceImpl;
-import com.flipkart.service.StudentInterface;
-import com.flipkart.service.StudentServiceImpl;
 
 import java.util.Scanner;
 
