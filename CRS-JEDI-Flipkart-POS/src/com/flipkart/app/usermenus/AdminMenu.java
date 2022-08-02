@@ -43,8 +43,7 @@ public class AdminMenu implements UserMenu {
                 admin.removeCourse();
                 break;
             case 6:
-                CRSApplication.showMenu();
-                break;
+                return;
             default:
                 System.out.println("Please select a valid option.");
         }

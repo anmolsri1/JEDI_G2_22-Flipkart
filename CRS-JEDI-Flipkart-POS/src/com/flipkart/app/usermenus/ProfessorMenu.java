@@ -37,8 +37,7 @@ public class ProfessorMenu implements UserMenu {
                 professor.registerForCourses(professorId);
                 break;
             case 4:
-                CRSApplication.showMenu();
-                break;
+                return;
             default:
                 System.out.println("Please select a valid option.");
         }

@@ -47,8 +47,7 @@ public class StudentMenu implements UserMenu {
                 student.payFee(studentId);
                 break;
             case 7:
-                System.out.println("Successfully logged out!!!");
-                CRSApplication.showMenu();
+                return;
             default:
                 System.out.println("Please select a valid option.");
         }
