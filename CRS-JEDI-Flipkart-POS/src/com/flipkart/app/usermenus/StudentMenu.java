@@ -1,16 +1,13 @@
 package com.flipkart.app.usermenus;
 
 import com.flipkart.app.CRSApplication;
-import com.flipkart.dao.DummyData;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 
 import java.util.Scanner;
 
 public class StudentMenu implements UserMenu {
-    DummyData data;
-    public StudentMenu(DummyData data) {
-        this.data = data;
+    public StudentMenu() {
     }
     @Override
     public void showMenu() {
@@ -24,7 +21,7 @@ public class StudentMenu implements UserMenu {
         System.out.println("7. Log out");
         System.out.print("Select an option: ");
         Scanner scanner = new Scanner(System.in);
-        StudentInterface student = new StudentServiceImpl(data);
+        StudentInterface student = new StudentServiceImpl();
         int option = scanner.nextInt();
         switch(option) {
             case 1:
@@ -47,7 +44,7 @@ public class StudentMenu implements UserMenu {
                 break;
             case 7:
                 System.out.println("Successfully logged out!!!");
-                CRSApplication.showMenu(data);
+                CRSApplication.showMenu();
             default:
                 System.out.println("Please select a valid option.");
         }

@@ -6,15 +6,12 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.*;
-import javafx.util.Pair;
-
 import java.util.List;
 import java.util.Scanner;
 
 public class ProfessorServiceImpl implements ProfessorInterface{
-    DummyData data;
-    public ProfessorServiceImpl(DummyData data) {
-        this.data = data;
+    public ProfessorServiceImpl() {
+
     }
     @Override
     public void viewEnrolledStudents(int professorId) {

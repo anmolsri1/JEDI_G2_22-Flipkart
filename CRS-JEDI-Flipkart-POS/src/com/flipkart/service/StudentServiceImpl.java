@@ -6,7 +6,6 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.dao.AdminDaoInterface;
-import com.flipkart.dao.DummyData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +13,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class StudentServiceImpl implements StudentInterface{
-    DummyData data;
-    public StudentServiceImpl(DummyData data) {
-        this.data = data;
-    }
+//    DummyData data;
+    public StudentServiceImpl() {}
     @Override
     public void register() {
         Scanner scanner = new Scanner(System.in);
@@ -31,10 +28,10 @@ public class StudentServiceImpl implements StudentInterface{
         String gender = scanner.nextLine();
         System.out.print("Enter semester: ");
         int semester = scanner.nextInt();
-//        replace by dao function call
-        data.approvalStudent.add(new Student(1,name,password,address,1,gender,1,1));
-//        System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
-        CRSApplication.showMenu(data);
+
+//        data.approvalStudent.add(new Student(1,name,password,address,1,gender,1,1));
+        System.out.println("Your self-registration will be approved by admin. You will be notified shortly!!!");
+//        CRSApplication.showMenu(data);
     }
 
     @Override
@@ -60,7 +57,7 @@ public class StudentServiceImpl implements StudentInterface{
                 selCourses.add(course);
                 Catalog sel = new Catalog();
                 sel.courseList = selCourses;
-                data.selectedCourses.put("S101",sel);
+//                data.selectedCourses.put("S101",sel);
                 viewSelectedCourses();
                 System.out.println("Course "+choice+" added successfully!");
             }
@@ -82,7 +79,7 @@ public class StudentServiceImpl implements StudentInterface{
         });
         Catalog sel = new Catalog();
         sel.courseList = updateSelCourses;
-        data.selectedCourses.put("S101",sel);
+//        data.selectedCourses.put("S101",sel);
         viewSelectedCourses();
         System.out.println("Course "+choice+" dropped successfully!");
     }
@@ -99,31 +96,33 @@ public class StudentServiceImpl implements StudentInterface{
     @Override
     public List<Course> viewSelectedCourses() {
         System.out.println("List of select courses: ");
-        List<Course> courses = data.selectedCourses.get("S101").courseList;
+//        List<Course> courses = data.selectedCourses.get("S101").courseList;
 //        List<Course> courses = Catalog.getCourseList(studentID);
-        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
-
+//        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
+//
+//        return courses;
+        List<Course> courses = new ArrayList<>();
         return courses;
     }
 
     @Override
     public void payFee() {
-        if(data.feePaid.contains("S101")) {
-            System.out.println("You have already paid the fee.");
-        }
-        else {
-            int numCourses = data.selectedCourses.get("S101").courseList.size();
-            System.out.println("Fee due: "+numCourses*500);
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Select your preferred payment method: \n1. UPI \n2. Cash\n3. Netbanking");
-            int choice = scanner.nextInt();
-            if(choice==2){
-                System.out.println("You may deposit your fee at the accounts department.");
-            }
-            else{
-                System.out.println("Proceed to the payment gateway and do not clase this window. \n\n\nThank you fo making the payment");
-                data.feePaid.add("S101");
-            }
-        }
+//        if(data.feePaid.contains("S101")) {
+//            System.out.println("You have already paid the fee.");
+//        }
+//        else {
+//            int numCourses = data.selectedCourses.get("S101").courseList.size();
+//            System.out.println("Fee due: "+numCourses*500);
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("Select your preferred payment method: \n1. UPI \n2. Cash\n3. Netbanking");
+//            int choice = scanner.nextInt();
+//            if(choice==2){
+//                System.out.println("You may deposit your fee at the accounts department.");
+//            }
+//            else{
+//                System.out.println("Proceed to the payment gateway and do not clase this window. \n\n\nThank you fo making the payment");
+//                data.feePaid.add("S101");
+//            }
+//        }
     }
 }

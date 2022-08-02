@@ -4,7 +4,7 @@ import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 
 public abstract class User {
-    private String userId;
+    private int userId;
     private String name;
     private String password;
     private String address;
@@ -13,7 +13,7 @@ public abstract class User {
 
     public static String[] roleMap= {"", "STUDENT", "PROFESSOR", "ADMIN"};
 
-    public User(String userId, String name, String password, String address, Role role, Gender gender) {
+    public User(int userId, String name, String password, String address, Role role, Gender gender) {
         this.userId = userId;
         this.name = name;
         this.password = password;
@@ -26,11 +26,11 @@ public abstract class User {
 
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

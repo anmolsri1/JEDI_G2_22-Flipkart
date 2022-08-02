@@ -4,15 +4,15 @@ import com.flipkart.constant.Gender;
 import com.flipkart.constant.Role;
 
 public class Professor extends User{
-    private String professorId;
+    private int professorId;
     private String department;
     private String position;
 
-    public String getProfessorId() {
+    public int getProfessorId() {
         return professorId;
     }
 
-    public void setProfessorId(String professorId) {
+    public void setProfessorId(int professorId) {
         this.professorId = professorId;
     }
 

@@ -5,14 +5,13 @@ import com.flipkart.app.usermenus.ProfessorMenu;
 import com.flipkart.app.usermenus.StudentMenu;
 import com.flipkart.app.usermenus.UserMenu;
 import com.flipkart.bean.User;
-import com.flipkart.dao.DummyData;
 import com.flipkart.service.UserInterface;
 import com.flipkart.service.UserServiceImpl;
 
 import java.util.Scanner;
 
 public class LoginMenu {
-    public static void showLoginMenu(DummyData data) {
+    public static void showLoginMenu() {
         System.out.println("Login menu.");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Username: ");
@@ -27,7 +26,7 @@ public class LoginMenu {
         int role = scanner.nextInt();
 
         // verifyCredentials
-        UserInterface userInterface = new UserServiceImpl(data);
+        UserInterface userInterface = new UserServiceImpl();
         if(!userInterface.verifyCredentials(username, password, User.roleMap[role])) {
             System.out.println("Wrong credentials...");
             return;
@@ -36,15 +35,15 @@ public class LoginMenu {
         UserMenu userMenu = null;
         switch(role) {
             case 1:
-                userMenu = new StudentMenu(data);
+                userMenu = new StudentMenu();
                 userMenu.showMenu();
                 break;
             case 2:
-                userMenu = new ProfessorMenu(data);
+                userMenu = new ProfessorMenu();
                 userMenu.showMenu();
                 break;
             case 3:
-                userMenu = new AdminMenu(data);
+                userMenu = new AdminMenu();
                 userMenu.showMenu();
                 break;
 
