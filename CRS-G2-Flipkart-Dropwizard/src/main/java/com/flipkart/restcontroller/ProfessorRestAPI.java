@@ -18,6 +18,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.flipkart.dao.AdminDaoImpl;
+import com.flipkart.dao.AdminDaoInterface;
+import com.flipkart.dao.ProfessorDaoInterface;
 import org.hibernate.validator.constraints.Email;
 
 import com.flipkart.bean.Course;
@@ -28,7 +31,8 @@ import com.flipkart.validator.ProfessorValidator;
 
 @Path("/professor")
 public class ProfessorRestAPI {
-	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
+	ProfessorDaoInterface professorInterface = new ProfessorServiceImpl();
+	AdminDaoInterface admin = new AdminDaoImpl();
 	
 	@GET
 	@Path("/getEnrolledStudents/{profId}")
@@ -41,7 +45,8 @@ public class ProfessorRestAPI {
 		List<EnrolledStudent> students=new ArrayList<EnrolledStudent>();
 		try
 		{
-			students=professorInterface.viewEnrolledStudents(profId);
+			students = professorInterface.getEnrolledStudents(profId);
+
 		}
 		catch(Exception ex)
 		{
@@ -61,7 +66,8 @@ public class ProfessorRestAPI {
 		List<Course> courses=new ArrayList<Course>();
 		try
 		{
-			courses=professorInterface.viewCourses(profId);	
+
+			courses= admin.viewProfCourses();
 		}
 		catch(Exception ex)
 		{
@@ -94,9 +100,9 @@ public class ProfessorRestAPI {
 		try
 		{
 			List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
-			enrolledStudents=professorInterface.viewEnrolledStudents(profId);
+			enrolledStudents=professorInterface.getEnrolledStudents(profId);
 			List<Course> coursesEnrolled=new ArrayList<Course>();
-			coursesEnrolled	=professorInterface.viewCourses(profId);
+			coursesEnrolled	= admin.viewProfCourses(profId);
 			if(!(ProfessorValidator.isValidStudent(enrolledStudents, studentId) && ProfessorValidator.isValidCourse(coursesEnrolled, courseCode)))
 			{
 				professorInterface.addGrade(studentId, courseCode, grade);

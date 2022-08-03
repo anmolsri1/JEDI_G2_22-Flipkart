@@ -13,6 +13,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.flipkart.dao.UserDaoImpl;
+import com.flipkart.dao.UserDaoInterface;
 import org.hibernate.validator.constraints.Email;
 
 import com.flipkart.bean.Student;
@@ -28,7 +30,7 @@ import com.flipkart.service.UserServiceImpl;
 @Path("/user")
 public class UserRestAPI {
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
-	UserInterface userInterface = UserServiceImpl.getInstance();
+	UserDaoInterface userInterface = new UserDaoImpl();
 	
 	
 	/**
@@ -42,7 +44,7 @@ public class UserRestAPI {
 	public Response updatePassword(
 			@NotNull
 			//@Email(message = "Invalid User ID: Not in email format")
-			@PathParam("userId") String userId,
+			@PathParam("userId") int userId,
 			@NotNull
 			//@Size(min = 4 , max = 20 , message = "Password length should be between 4 and 20 characters")
 			@PathParam("newPassword") String newPassword) throws ValidationException {
@@ -72,7 +74,7 @@ public class UserRestAPI {
 	@Path("/login/{userId}/{password}")
 	public Response verifyCredentials(
 			@NotNull
-			@PathParam("userId") String userId,
+			@PathParam("userId") int userId,
 			@NotNull
 			@PathParam("password") String password) throws ValidationException {
 		
@@ -125,7 +127,7 @@ public class UserRestAPI {
 	public Response getRole(
 			@NotNull
 			//@Email(message = "Invalid User ID: Not in email format")
-			@PathParam("userId") String userId ) throws ValidationException{
+			@PathParam("userId") int userId ) throws ValidationException{
 		System.out.println(userId);
 		return Response.status(200).entity(userInterface.getRole(userId)).build();
 	}
