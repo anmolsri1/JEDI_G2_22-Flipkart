@@ -102,7 +102,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
     /**
      * Method to retrieve Student Id from User Id
      * @param userId
-     * @return Student Id
+     * @return StudentId
      */
     @Override
     public String getStudentId(int userId) {
@@ -153,6 +153,11 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return false;
     }
 
+    /**
+     * Method to add Course
+     * @param studentId
+     * @param courseId
+     */
     @Override
     public void addCourse(int studentId, int courseId) {
         Connection connection=DBUtils.getConnection();
@@ -177,6 +182,11 @@ public class StudentDaoImpl implements StudentDaoInterface {
         }
     }
 
+    /**
+     * Method to drop a course
+     * @param studentId
+     * @param courseId
+     */
     @Override
     public void dropCourse(int studentId, int courseId) {
         Connection connection=DBUtils.getConnection();
@@ -202,6 +212,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
     }
 
     @Override
+    /**
+     * Method to view the selected courses
+     * @param studentId
+     */
     public List<Course> viewSelectedCourses(int studentId) {
         Connection connection=DBUtils.getConnection();
         List<Course> courses = new ArrayList<>();
@@ -244,6 +258,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return courses;
     }
 
+    /**
+     * Method to view the grades
+     * @param studentId
+     */
     @Override
     public List<RegisteredCourse> viewGrades(int studentId) {
         Connection connection=DBUtils.getConnection();

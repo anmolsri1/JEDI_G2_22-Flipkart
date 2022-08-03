@@ -7,6 +7,9 @@ public class ProfessorIdAlreadyInUseException extends Exception {
         this.ProfessorId = id;
     }
 
+    /***
+     * Getter function for ProfessorId
+     */
     public String getUserId() {
         return this.ProfessorId;
     }

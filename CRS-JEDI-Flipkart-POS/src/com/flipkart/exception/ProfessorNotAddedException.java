@@ -11,6 +11,9 @@ public class ProfessorNotAddedException extends Exception {
         return this.professorId;
     }
 
+    /**
+     * Message thrown by exception
+     */
     public String getMessage() {
         return "professorId: " + this.professorId + " not added!";
     }
