@@ -46,13 +46,13 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
     }
 
     @Override
-    public Boolean addGrade(int studentId, int courseCode, String grade) {
+    public Boolean addGrade(int studentId, int courseId, String grade) {
         Connection connection= DBUtils.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(SqlQueriesConstant.ADD_GRADE);
 
             statement.setString(1, grade);
-            statement.setInt(2, courseCode);
+            statement.setInt(2, courseId);
             statement.setInt(3, studentId);
 
             int row = statement.executeUpdate();

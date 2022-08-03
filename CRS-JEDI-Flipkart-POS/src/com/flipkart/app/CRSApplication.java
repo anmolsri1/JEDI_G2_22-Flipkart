@@ -10,7 +10,9 @@ public class CRSApplication {
             showMenu();
 //        }
     }
-
+    /**
+     * Method to Create Main Menu
+     */
     public static void showMenu() throws UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException, StudentNotRegisteredException {
         System.out.println("--------Welcome to CRS Menu--------");
         System.out.println("1. Login");

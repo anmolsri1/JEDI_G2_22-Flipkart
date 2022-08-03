@@ -1,5 +1,8 @@
 package com.flipkart.constant;
 
+/**
+ * Enumeration class for GenderConstant
+ */
 public enum Gender {
     MALE(1),
     FEMALE(2),
@@ -7,15 +10,29 @@ public enum Gender {
 
     private final int gender;
 
+    /**
+     * Parameterized Constructor
+     * @param gender
+     */
     private Gender(int gender) {
         this.gender = gender;
     }
+
+    /**
+     * Method to return gender type in String
+     * @return Gender name in String
+     */
 
     public String toString() {
         String name = this.name();
         return name;
     }
 
+    /**
+     * Method to get Gender object depending upon user input
+     * @param val
+     * @return Gender object
+     */
     public static Gender getName(int val) {
         Gender gender = OTHER;
         switch (val) {
@@ -29,6 +46,11 @@ public enum Gender {
         return gender;
     }
 
+    /**
+     * Method to convert String to GenderConstant object
+     * @param val
+     * @return Gender object
+     */
     public static Gender stringToGender(String val) {
         Gender gender = OTHER;
         if (val.equalsIgnoreCase("male")) {

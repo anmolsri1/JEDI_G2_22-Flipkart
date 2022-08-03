@@ -24,8 +24,15 @@ public class AdminDaoImpl implements AdminDaoInterface {
     private PreparedStatement statement = null;
     Connection connection = DBUtils.getConnection();
 
+    /**
+     * Default Constructor
+     */
     public AdminDaoImpl() {}
 
+    /**
+     * Method to make AdminDaoImpl Singleton
+     * @return
+     */
     public static AdminDaoImpl getInstance() {
         if (instance == null) {
             synchronized(AdminDaoImpl.class) {
@@ -35,6 +42,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return instance;
     }
 
+    /**
+     * Remove Course using SQL commands
+     * @param courseId
+     * @throws CourseNotFoundException
+     * @throws CourseNotDeletedException
+     */
     public void removeCourse(String courseId) throws CourseNotFoundException, CourseNotDeletedException {
         this.statement = null;
         try {
@@ -55,6 +68,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Add Course using SQL commands
+     * @param course
+     * @throws CourseExistsAlreadyException
+     */
     public void addCourse(Course course) throws CourseExistsAlreadyException {
         this.statement = null;
         try {
@@ -77,6 +95,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Fetch Students yet to approved using SQL commands
+     * @return List of Students yet to approved
+     */
     public List<Student> viewPendingAdmissions() {
         this.statement = null;
         List<Student> userList = new ArrayList();
@@ -95,6 +117,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return userList;
     }
 
+    /**
+     * Approve Student using SQL commands
+     * @param studentId
+     * @throws StudentNotFoundForApprovalException
+     */
     public void approveStudent(int studentId) throws StudentNotFoundForApprovalException {
         this.statement = null;
 
@@ -115,6 +142,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
     }
 
+    /**
+     * Method to add user using SQL commands
+     * @param user
+     * @throws UserNotAddedException
+     * @throws UserIdAlreadyInUseException
+     */
     public void addUser(User user) throws UserNotAddedException, UserIdAlreadyInUseException {
         this.statement = null;
 
@@ -141,6 +174,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Add professor using SQL commands
+     * @param professor
+     * @throws UserIdAlreadyInUseException
+     * @throws ProfessorNotAddedException
+     */
     public void addProfessor(Professor professor) throws UserIdAlreadyInUseException, ProfessorNotAddedException {
         try {
             this.addUser(professor);
@@ -174,6 +213,14 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Add courses using SQL commands
+     * @param courseName
+     * @param professorId
+     * @param seats
+     * @throws CourseNotFoundException
+     * @throws UserNotFoundException
+     */
     public void addCourse(String courseName, int professorId, int seats) throws CourseNotFoundException, UserNotFoundException {
         this.statement = null;
 
@@ -197,6 +244,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * View courses in the catalog
+     * @return List of courses in the catalog
+     */
     public List<Course> viewCourses() {
         this.statement = null;
         List<Course> courseList = new ArrayList();
@@ -218,6 +269,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
         return courseList;
     }
+
+    /**
+     * View courses taken by professors in the University
+     * @return List of the courses taken by professor in the University
+     */
     public List<Course> viewProfCourses() {
         this.statement = null;
         List<Course> courseList = new ArrayList();
@@ -240,6 +296,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return courseList;
     }
 
+    /**
+     * View professor in the university
+     * @return List of the professors in the University
+     */
     public List<Professor> viewProfessors() {
         this.statement = null;
         List<Professor> professorList = new ArrayList();

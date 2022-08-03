@@ -5,6 +5,9 @@
 
 package com.flipkart.constant;
 
+/**
+ * Enumeration class for RoleConstant Types
+ */
 public enum Role {
     ADMIN,
     PROFESSOR,
@@ -18,6 +21,11 @@ public enum Role {
         return name;
     }
 
+    /**
+     * Method to get Role object from String
+     * @param role
+     * @return Role object
+     */
     public static Role stringToName(String role) {
         Role userRole = null;
         if (role.equalsIgnoreCase("ADMIN")) {
