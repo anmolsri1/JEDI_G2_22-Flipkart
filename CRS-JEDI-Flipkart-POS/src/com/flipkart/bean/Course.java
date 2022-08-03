@@ -84,7 +84,7 @@ public class Course {
      * @param seats: Number of seats offered
      * @param instructor: Professor Id
      */
-    public Course(int courseId, String courseName, int seats, int instructor) {
+    public Course(int courseId, String courseName, int seats, int instructor, String courseType) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.seats = seats;
