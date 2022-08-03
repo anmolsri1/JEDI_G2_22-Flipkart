@@ -9,6 +9,7 @@ public class Course {
     private String courseName;
     private int seats;
     private int instructor;
+    private String courseType;
 
     /**
      * Method to get course id
@@ -88,5 +89,14 @@ public class Course {
         this.courseName = courseName;
         this.seats = seats;
         this.instructor = instructor;
+        this.courseType = courseType;
+    }
+
+    public String getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 }

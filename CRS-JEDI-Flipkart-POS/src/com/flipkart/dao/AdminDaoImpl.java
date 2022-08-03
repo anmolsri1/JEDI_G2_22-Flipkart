@@ -24,8 +24,15 @@ public class AdminDaoImpl implements AdminDaoInterface {
     private PreparedStatement statement = null;
     Connection connection = DBUtils.getConnection();
 
+    /**
+     * Default Constructor
+     */
     public AdminDaoImpl() {}
 
+    /**
+     * Method to make AdminDaoImpl Singleton
+     * @return
+     */
     public static AdminDaoImpl getInstance() {
         if (instance == null) {
             synchronized(AdminDaoImpl.class) {
@@ -35,6 +42,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return instance;
     }
 
+    /**
+     * Remove Course using SQL commands
+     * @param courseId
+     * @throws CourseNotFoundException
+     * @throws CourseNotDeletedException
+     */
     public void removeCourse(String courseId) throws CourseNotFoundException, CourseNotDeletedException {
         this.statement = null;
         try {
@@ -55,14 +68,20 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Add Course using SQL commands
+     * @param course
+     * @throws CourseExistsAlreadyException
+     */
     public void addCourse(Course course) throws CourseExistsAlreadyException {
         this.statement = null;
         try {
-            String sql = "insert into catalogue(courseId, courseName, seats) values (?, ?, ?)";
+            String sql = "insert into catalogue(courseId, courseName, seats, courseType) values (?, ?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setInt(1, course.getCourseId());
             this.statement.setString(2, course.getCourseName());
             this.statement.setInt(3, course.getSeats());
+            this.statement.setString(4, course.getCourseType());
             int row = this.statement.executeUpdate();
             System.out.println(row + " course added");
             if (row == 0) {
@@ -77,6 +96,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Fetch Students yet to approved using SQL commands
+     * @return List of Students yet to approved
+     */
     public List<Student> viewPendingAdmissions() {
         this.statement = null;
         List<Student> userList = new ArrayList();
@@ -95,6 +118,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return userList;
     }
 
+    /**
+     * Approve Student using SQL commands
+     * @param studentId
+     * @throws StudentNotFoundForApprovalException
+     */
     public void approveStudent(int studentId) throws StudentNotFoundForApprovalException {
         this.statement = null;
 
@@ -115,6 +143,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
     }
 
+    /**
+     * Method to add user using SQL commands
+     * @param user
+     * @throws UserNotAddedException
+     * @throws UserIdAlreadyInUseException
+     */
     public void addUser(User user) throws UserNotAddedException, UserIdAlreadyInUseException {
         this.statement = null;
 
@@ -141,6 +175,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
+    /**
+     * Add professor using SQL commands
+     * @param professor
+     * @throws UserIdAlreadyInUseException
+     * @throws ProfessorNotAddedException
+     */
     public void addProfessor(Professor professor) throws UserIdAlreadyInUseException, ProfessorNotAddedException {
         try {
             this.addUser(professor);
@@ -174,29 +214,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
-    public void addCourse(String courseName, int professorId, int seats) throws CourseNotFoundException, UserNotFoundException {
-        this.statement = null;
-
-        try {
-            String sql = "insert into catalogue(courseName, professorId, seats) values (?, ?, ?)";
-            this.statement = this.connection.prepareStatement(sql);
-            this.statement.setInt(2, professorId);
-            this.statement.setString(1, courseName);
-            this.statement.setInt(3, seats);
-            int row = this.statement.executeUpdate();
-            System.out.println(row + " course assigned.");
-            if (row == 0) {
-                System.out.println("Error: " + courseName + " not found");
-                throw new CourseNotFoundException(courseName);
-            } else {
-                System.out.println("Course with courseCode: " + courseName + " is assigned to professor with professorId: " + professorId + ".");
-            }
-        } catch (SQLException var5) {
-            System.out.println("Error: " + var5.getMessage());
-            throw new UserNotFoundException(professorId);
-        }
-    }
-
+    /**
+     * View courses in the catalog
+     * @return List of courses in the catalog
+     */
     public List<Course> viewCourses() {
         this.statement = null;
         List<Course> courseList = new ArrayList();
@@ -218,6 +239,11 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
         return courseList;
     }
+
+    /**
+     * View courses taken by professors in the University
+     * @return List of the courses taken by professor in the University
+     */
     public List<Course> viewProfCourses() {
         this.statement = null;
         List<Course> courseList = new ArrayList();
@@ -240,6 +266,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return courseList;
     }
 
+    /**
+     * View professor in the university
+     * @return List of the professors in the University
+     */
     public List<Professor> viewProfessors() {
         this.statement = null;
         List<Professor> professorList = new ArrayList();
@@ -262,6 +292,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return professorList;
     }
 
+    /**
+     * Utility Method for generating report card
+     * @param studentId
+     */
     public void setGeneratedReportCardTrue(String studentId) {
         String sql1 = "update student set isReportGenerated = 1 where studentId = ?";
 
@@ -275,6 +309,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
     }
 
+    /**
+     * Method to generate Report Card
+     * @param studentId
+     */
     public List<RegisteredCourse> generateGradeCard(int studentId) {
         List<RegisteredCourse> CoursesOfStudent = new ArrayList();
 

@@ -66,7 +66,7 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         AdminDaoInterface admin = new AdminDaoImpl();
         List<Course> courseList= admin.viewProfCourses();
         courseList.forEach((course) -> {
-            System.out.println(course.getCourseId()+"\t"+course.getCourseName());
+            System.out.println(course.getCourseId()+"\t"+course.getCourseName() + "\t" + course.getCourseType());
         });
         if (courseList.size() == 0) return;
         ProfessorDaoInterface professor = new ProfessorDaoImpl();

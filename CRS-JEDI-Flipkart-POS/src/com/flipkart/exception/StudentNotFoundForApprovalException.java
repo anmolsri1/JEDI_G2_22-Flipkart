@@ -7,10 +7,17 @@ public class StudentNotFoundForApprovalException extends Exception {
         this.studentId = id;
     }
 
+    /**
+     * Getter function for professorId
+     * @return
+     */
     public int getUserId() {
         return this.studentId;
     }
 
+    /**
+     * Message returned when user is already in use
+     */
     public String getMessage() {
         return "studentId: " + this.studentId + " not registered!";
     }

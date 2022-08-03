@@ -130,7 +130,7 @@ public class StudentServiceImpl implements StudentInterface{
         System.out.println("List of available courses: ");
         AdminDaoInterface admin = new AdminDaoImpl();
         List<Course> courses = admin.viewCourses();
-        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
+        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName() + " " + course.getCourseType()));
         return courses;
     }
 
@@ -144,7 +144,7 @@ public class StudentServiceImpl implements StudentInterface{
         System.out.println("List of select courses: ");
         StudentDaoInterface student = new StudentDaoImpl();
         List<Course> courses = student.viewSelectedCourses(studentId);
-        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
+        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName() + " " + course.getCourseType()));
         return courses;
     }
 
