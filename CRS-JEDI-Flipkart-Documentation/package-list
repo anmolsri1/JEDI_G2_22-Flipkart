@@ -1,0 +1,9 @@
+com.flipkart.app
+com.flipkart.app.dao
+com.flipkart.app.usermenus
+com.flipkart.bean
+com.flipkart.constant
+com.flipkart.dao
+com.flipkart.exception
+com.flipkart.service
+com.flipkart.utils
