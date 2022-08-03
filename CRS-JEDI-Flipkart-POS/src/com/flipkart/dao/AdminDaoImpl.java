@@ -76,11 +76,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void addCourse(Course course) throws CourseExistsAlreadyException {
         this.statement = null;
         try {
-            String sql = "insert into catalogue(courseId, courseName, seats) values (?, ?, ?)";
+            String sql = "insert into catalogue(courseId, courseName, seats, courseType) values (?, ?, ?, ?)";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setInt(1, course.getCourseId());
             this.statement.setString(2, course.getCourseName());
             this.statement.setInt(3, course.getSeats());
+            this.statement.setString(4, course.getCourseType());
             int row = this.statement.executeUpdate();
             System.out.println(row + " course added");
             if (row == 0) {
@@ -210,39 +211,6 @@ public class AdminDaoImpl implements AdminDaoInterface {
         } catch (SQLException var4) {
             System.out.println("Error: " + var4.getMessage());
             throw new UserIdAlreadyInUseException(professor.getUserId());
-        }
-    }
-
-
-        /**
-         * Add courses using SQL commands
-         * @param courseName
-         * @param professorId
-         * @param seats
-         * @throws CourseNotFoundException
-         * @throws UserNotFoundException
-         */
-    public void addCourse(String courseName, int professorId, int seats, String courseType) throws CourseNotFoundException, UserNotFoundException {
-        this.statement = null;
-
-        try {
-            String sql = "insert into catalogue(courseName, professorId, seats) values (?, ?, ?)";
-            this.statement = this.connection.prepareStatement(sql);
-            this.statement.setInt(2, professorId);
-            this.statement.setString(1, courseName);
-            this.statement.setInt(3, seats);
-            this.statement.setString(1, courseType);
-            int row = this.statement.executeUpdate();
-            System.out.println(row + " course assigned.");
-            if (row == 0) {
-                System.out.println("Error: " + courseName + " not found");
-                throw new CourseNotFoundException(courseName);
-            } else {
-                System.out.println("Course with courseCode: " + courseName + " is assigned to professor with professorId: " + professorId + ".");
-            }
-        } catch (SQLException var5) {
-            System.out.println("Error: " + var5.getMessage());
-            throw new UserNotFoundException(professorId);
         }
     }
 
