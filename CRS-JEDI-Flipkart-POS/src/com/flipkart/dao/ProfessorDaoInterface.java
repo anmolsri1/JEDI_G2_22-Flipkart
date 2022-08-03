@@ -9,24 +9,23 @@ import java.util.List;
 public interface ProfessorDaoInterface {
     /**
      * Method to view list of enrolled Students using SQL Commands
-     * @param: profId: professor id
-     * @param: courseCode: course code of the professor
-     * @return: return the enrolled students for the corresponding professor and course code.
+     * @param: courseId: course code of the professor
+     * @return: return the enrolled students for the corresponding course id.
      */
     public List<EnrolledStudent> getEnrolledStudents(int courseId);
 
     /**
-     * Method to GradeConstant a student using SQL Commands
+     * Method to Grade a student using SQL Commands
      * @param: profId: professor id
      * @param: courseCode: course code for the corresponding
      * @return: returns the status after adding the grade
      */
-    public Boolean addGrade(int studentId,int courseCode,String grade);
+    public Boolean addGrade(int studentId,int courseId,String grade);
 
     /**
      * Method to Get professor name by id
      * @param profId
-     * @return Professor Id in string
+     * @return ProfessorId in int
      */
     public String getProfessorById(int profId);
 
