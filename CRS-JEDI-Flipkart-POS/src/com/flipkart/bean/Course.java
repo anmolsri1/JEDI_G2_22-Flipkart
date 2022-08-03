@@ -5,6 +5,7 @@ public class Course {
     private String courseName;
     private int seats;
     private int instructor;
+    private String courseType;
 
     public int getCourseId() {
         return courseId;
@@ -38,10 +39,19 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public Course(int courseId, String courseName, int seats, int instructor) {
+    public Course(int courseId, String courseName, int seats, int instructor, String courseType) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.seats = seats;
         this.instructor = instructor;
+        this.courseType = courseType;
+    }
+
+    public String getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 }

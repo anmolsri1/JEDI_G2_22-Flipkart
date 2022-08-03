@@ -174,7 +174,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
         }
     }
 
-    public void addCourse(String courseName, int professorId, int seats) throws CourseNotFoundException, UserNotFoundException {
+    public void addCourse(String courseName, int professorId, int seats, String courseType) throws CourseNotFoundException, UserNotFoundException {
         this.statement = null;
 
         try {
@@ -183,6 +183,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             this.statement.setInt(2, professorId);
             this.statement.setString(1, courseName);
             this.statement.setInt(3, seats);
+            this.statement.setString(1, courseType);
             int row = this.statement.executeUpdate();
             System.out.println(row + " course assigned.");
             if (row == 0) {

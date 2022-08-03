@@ -82,7 +82,9 @@ public class AdminServiceImpl implements AdminInterface{
         System.out.print("Enter no. of seats: ");
         int seats = scanner.nextInt();
         scanner.nextLine();
-        Course course = new Course(courseId,courseName,seats ,0);
+        System.out.print("Enter type of Course: ");
+        String courseType = scanner.nextLine();
+        Course course = new Course(courseId,courseName,seats ,0, courseType);
 
         AdminDaoInterface admin = new AdminDaoImpl();
         admin.addCourse(course);
@@ -96,7 +98,7 @@ public class AdminServiceImpl implements AdminInterface{
             System.out.println("There are no courses to remove!!!");
             return;
         }
-        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()));
+        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()) + " " + course.getCourseType());
         System.out.print("Choose a course to remove: ");
         Scanner scanner = new Scanner((System.in));
         String courseId = scanner.nextLine();
