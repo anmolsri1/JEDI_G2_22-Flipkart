@@ -43,7 +43,7 @@ public class SqlQueriesConstant {
     public static final String DROP_REGISTERED_COURSE = "delete from registeredCourse where studentId = ? and courseId = ?";
     public static final String GET_COURSE_ID_FROM_STUDENT_ID = "select courseId from registeredCourse where studentId = ?";
     public static final String GET_REGISTERED_COURSES_BY_ID = "select * from registeredCourse where studentId = ?";
-    public static final String GET_COURSES_BY_ID = "select * from catalogue where courseId = ?";
+    public static final String GET_COURSES_BY_ID = "select courseId, courseName, seats, instructor, courseType from catalogue where courseId = ?";
     //ProfessorDao queries
 
     public static final String UPDATE_PASSWORD="update user set password=? where id = ? ";
