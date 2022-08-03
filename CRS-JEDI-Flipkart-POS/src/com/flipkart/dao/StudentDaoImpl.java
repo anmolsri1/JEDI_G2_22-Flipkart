@@ -222,7 +222,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
                 statement.setInt(1, clist.get(i));
                 rs = statement.executeQuery();
                 while(rs.next()) {
-                    Course course = new Course(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+                    Course course = new Course(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
                     courses.add(course);
                 }
             }

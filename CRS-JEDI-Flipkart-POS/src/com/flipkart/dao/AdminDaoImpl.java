@@ -223,12 +223,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Course> courseList = new ArrayList();
 
         try {
-            String sql = "select courseId, courseName, professorId, seats from catalogue";
+            String sql = "select courseId, courseName, professorId, seats, courseType from catalogue";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3), resultSet.getString(5));
                 courseList.add(course);
             }
 
@@ -249,12 +249,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<Course> courseList = new ArrayList();
 
         try {
-            String sql = "select courseId, courseName, seats from catalogue where professorId is NULL";
+            String sql = "select courseId, courseName, seats, courseType from catalogue where professorId is NULL";
             this.statement = this.connection.prepareStatement(sql);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), 0);
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), 0, resultSet.getString(4));
                 courseList.add(course);
             }
 
@@ -309,13 +309,13 @@ public class AdminDaoImpl implements AdminDaoInterface {
         List<RegisteredCourse> CoursesOfStudent = new ArrayList();
 
         try {
-            String sql = "select catalogue.courseId, courseName, professorId, seats, studentId, grade, semester from catalogue inner join registeredCourse on catalogue.courseId = registeredCourse.courseId where registeredCourse.studentId = ?";
+            String sql = "select catalogue.courseId, courseName, professorId, seats, studentId, grade, semester, courseType from catalogue inner join registeredCourse on catalogue.courseId = registeredCourse.courseId where registeredCourse.studentId = ?";
             this.statement = this.connection.prepareStatement(sql);
             this.statement.setInt(1, studentId);
             ResultSet resultSet = this.statement.executeQuery();
 
             while(resultSet.next()) {
-                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));
+                Course course = new Course(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3), resultSet.getString(8));
                 RegisteredCourse temp = new RegisteredCourse();
                 temp.setCourseId(course.getCourseId());
                 temp.setStudentId(studentId);

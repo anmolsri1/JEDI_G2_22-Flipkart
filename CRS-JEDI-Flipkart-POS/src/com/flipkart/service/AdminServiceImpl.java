@@ -98,7 +98,7 @@ public class AdminServiceImpl implements AdminInterface{
             System.out.println("There are no courses to remove!!!");
             return;
         }
-        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName()) + " " + course.getCourseType());
+        courses.forEach((course) -> System.out.println(course.getCourseId() + " " + course.getCourseName() + " " + course.getCourseType()));
         System.out.print("Choose a course to remove: ");
         Scanner scanner = new Scanner((System.in));
         String courseId = scanner.nextLine();
