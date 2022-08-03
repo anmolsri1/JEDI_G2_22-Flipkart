@@ -9,15 +9,30 @@ import java.util.Scanner;
 
 import static com.flipkart.constant.Role.STUDENT;
 
+/**
+ * @author Jedi-02
+ * Implementation of User service. Implements UserInterface interface
+ */
 public class UserServiceImpl implements UserInterface{
+    /**
+     * Default constructor
+     */
+
     public UserServiceImpl() {
 
     }
+
+    /**
+     * Method to get details of user
+     */
     @Override
     public void getUserDetails() {
 
     }
 
+    /**
+     * Method to update password of user
+     */
     @Override
     public void updatePassword() {
         System.out.print("Enter userId: ");
@@ -30,6 +45,14 @@ public class UserServiceImpl implements UserInterface{
         user.updatePassword(userId, newPassword);
     }
 
+
+    /**
+     * Method to verify credentials when a user wants to log in
+     * @param username
+     * @param password
+     * @return
+     * @throws UserNotFoundException
+     */
     @Override
     public Role verifyCredentials(int username, String password) throws UserNotFoundException {
 

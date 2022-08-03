@@ -9,10 +9,21 @@ import com.flipkart.dao.*;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * @author @author Jedi-02
+ * Professor services implementation. Implements ProfessorInterface interface
+ */
 public class ProfessorServiceImpl implements ProfessorInterface{
+    /**
+     * Default constructor
+     */
     public ProfessorServiceImpl() {
 
     }
+    /**
+     * Method to view students enrolled under the professor
+     * @param professorId
+     */
     @Override
     public void viewEnrolledStudents(int professorId) {
         ProfessorDaoInterface professor = new ProfessorDaoImpl();
@@ -23,6 +34,9 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         });
     }
 
+    /**
+     * Method to add grade for a student in a course
+     */
     @Override
     public void addGrade() {
         Scanner sc = new Scanner(System.in);
@@ -41,6 +55,10 @@ public class ProfessorServiceImpl implements ProfessorInterface{
         professor.addGrade(studentId, courseId, grade);
     }
 
+    /**
+     * Method to help a professor register to a course
+     * @param professorId
+     */
     @Override
     public void registerForCourses(int professorId) {
         Scanner sc = new Scanner(System.in);

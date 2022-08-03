@@ -12,9 +12,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * @author Jedi-02
+ * Implementation of admin services. Implements AdminInterface interface
+ */
 public class AdminServiceImpl implements AdminInterface{
+
+    /**
+     * Default constructor
+     */
     public AdminServiceImpl() {
     }
+
+    /**
+     * Method to see list of students who have pending approval and approve their registration
+     * @throws StudentNotFoundForApprovalException
+     */
     @Override
     public void verifyStudent() throws StudentNotFoundForApprovalException {
         AdminDaoInterface admin = new AdminDaoImpl();
@@ -30,6 +43,11 @@ public class AdminServiceImpl implements AdminInterface{
         admin.approveStudent(studentId);
     }
 
+    /**
+     * Mehtod to add a new professor into the system
+     * @throws UserIdAlreadyInUseException
+     * @throws ProfessorNotAddedException
+     */
     @Override
     public void addProfessor() throws UserIdAlreadyInUseException, ProfessorNotAddedException {
         Scanner scanner = new Scanner(System.in);
@@ -54,6 +72,9 @@ public class AdminServiceImpl implements AdminInterface{
         admin.addProfessor(professor);
     }
 
+    /**
+     * Mehtod to generate report card
+     */
     @Override
     public void generateGradeCard() {
         AdminDaoInterface admin = new AdminDaoImpl();
@@ -71,6 +92,10 @@ public class AdminServiceImpl implements AdminInterface{
         });
     }
 
+    /**
+     * Method to add course into course catalog
+     * @throws CourseExistsAlreadyException
+     */
     @Override
     public void addCourse() throws CourseExistsAlreadyException {
         Scanner scanner = new Scanner(System.in);
@@ -88,6 +113,11 @@ public class AdminServiceImpl implements AdminInterface{
         admin.addCourse(course);
     }
 
+    /**
+     * Method to remove course from catalog
+     * @throws CourseNotDeletedException
+     * @throws CourseNotFoundException
+     */
     @Override
     public void removeCourse() throws CourseNotDeletedException, CourseNotFoundException {
         AdminDaoInterface admin = new AdminDaoImpl();

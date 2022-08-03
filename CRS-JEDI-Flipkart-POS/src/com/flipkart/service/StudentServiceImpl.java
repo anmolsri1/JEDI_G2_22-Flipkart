@@ -18,9 +18,28 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * @author Jedi-02
+ * Student service methods implementation. Implements StudentInterface interface
+ */
 public class StudentServiceImpl implements StudentInterface{
 //    DummyData data;
+
+    /**
+     * Default Constructor
+     */
     public StudentServiceImpl() {}
+    /**
+     * Method to register a student. Student asks for approval and only then can register to courses
+     * @throws StudentNotRegisteredException
+     * @throws UserNotFoundException
+     * @throws CourseNotDeletedException
+     * @throws CourseNotFoundException
+     * @throws CourseExistsAlreadyException
+     * @throws UserIdAlreadyInUseException
+     * @throws StudentNotFoundForApprovalException
+     * @throws ProfessorNotAddedException
+     */
     @Override
     public void register() throws StudentNotRegisteredException, UserNotFoundException, CourseNotDeletedException, CourseNotFoundException, CourseExistsAlreadyException, UserIdAlreadyInUseException, StudentNotFoundForApprovalException, ProfessorNotAddedException {
         Scanner scanner = new Scanner(System.in);
@@ -45,6 +64,10 @@ public class StudentServiceImpl implements StudentInterface{
         CRSApplication.showMenu();
     }
 
+    /**
+     * Mehtod to view grades of courses the student has registered
+     * @param studentId
+     */
     @Override
     public void viewGrades(int studentId) {
         // use regcourses table to get grades for courses for SID and use courses table to get course names
@@ -60,6 +83,10 @@ public class StudentServiceImpl implements StudentInterface{
         });
     }
 
+    /**
+     * Method to add course for registration
+     * @param studentId
+     */
     @Override
     public void addCourse(int studentId) {
         viewCatalog();
@@ -76,6 +103,10 @@ public class StudentServiceImpl implements StudentInterface{
         student.addCourse(studentId,courseId);
     }
 
+    /**
+     * Method to drop course for registration
+     * @param studentId
+     */
     @Override
     public void dropCourse(int studentId) {
         List<Course> selectedCourses = viewSelectedCourses(studentId);
@@ -90,6 +121,10 @@ public class StudentServiceImpl implements StudentInterface{
         student.dropCourse(studentId,courseId);
     }
 
+    /**
+     * Method to view course catalog
+     * @return
+     */
     @Override
     public List<Course> viewCatalog() {
         System.out.println("List of available courses: ");
@@ -99,6 +134,11 @@ public class StudentServiceImpl implements StudentInterface{
         return courses;
     }
 
+    /**
+     * Method to view list of courses the student has registerd
+     * @param studentId
+     * @return
+     */
     @Override
     public List<Course> viewSelectedCourses(int studentId) {
         System.out.println("List of select courses: ");
@@ -108,6 +148,10 @@ public class StudentServiceImpl implements StudentInterface{
         return courses;
     }
 
+    /**
+     * Method to pay fee for the registration to complete
+     * @param studentId
+     */
     @Override
     public void payFee(int studentId) {
         Scanner scanner = new Scanner(System.in);
