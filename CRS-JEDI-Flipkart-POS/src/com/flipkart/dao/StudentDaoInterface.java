@@ -20,7 +20,7 @@ public interface StudentDaoInterface {
     /**
      * Method to retrieve Student Id from User Id
      * @param userId
-     * @return Student Id
+     * @return StudentId
      */
     public String getStudentId(int userId);
 
@@ -31,8 +31,18 @@ public interface StudentDaoInterface {
      */
     public boolean isApproved(int studentId);
 
+    /**
+     * Method to add a course
+     * @param studentId
+     * @param courseId
+     */
     void addCourse(int studentId, int courseId);
 
+    /**
+     * Method to drop a course
+     * @param studentId
+     * @param courseId
+     */
     void dropCourse(int studentId, int courseId);
 
     List<Course> viewSelectedCourses(int studentId);

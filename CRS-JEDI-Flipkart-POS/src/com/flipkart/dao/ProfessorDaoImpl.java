@@ -15,6 +15,11 @@ import java.util.List;
 
 public class ProfessorDaoImpl implements ProfessorDaoInterface {
     @Override
+    /**
+     * Method to get the enrolled students
+     * @param professorId
+     * @return list of enrolled students
+     */
     public List<EnrolledStudent> getEnrolledStudents(int professorId) {
         Connection connection=DBUtils.getConnection();
         List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
@@ -46,6 +51,11 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
     }
 
     @Override
+    /**
+     * Boolean method to add grade
+     * @param studentId
+     * @param courseId
+     */
     public Boolean addGrade(int studentId, int courseId, String grade) {
         Connection connection= DBUtils.getConnection();
         try {
@@ -82,7 +92,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
     /**
      * Method to Get professor name by id
      * @param profId
-     * @return Professor Id in string
+     * @return Professor Id
      */
     @Override
     public String getProfessorById(int profId) {
@@ -118,6 +128,12 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
     }
 
     @Override
+    /**
+     * Method to register for courses
+     * @param profId
+     * @param courseId
+     * @return list of enrolled students
+     */
     public void registerForCourses(int profId, int courseId) {
         Connection connection= DBUtils.getConnection();
         try {
@@ -144,6 +160,10 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
     }
 
     @Override
+    /**
+     * Method to get CourseId from ProfessorId
+     * @param profId
+     */
     public int getCourseIdFromProfessorId(int profId) {
         int courseId = -1;
         Connection connection=DBUtils.getConnection();

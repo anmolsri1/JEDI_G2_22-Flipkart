@@ -17,9 +17,9 @@ public interface UserDaoInterface {
     public boolean verifyCredentials(int userId,String password) throws UserNotFoundException;
 
     /**
-     * Method to get RoleConstant of User from DataBase
+     * Method to get Role of User from DataBase
      * @param userId
-     * @return RoleConstant
+     * @return Role
      */
     public int getRole(int userId);
 

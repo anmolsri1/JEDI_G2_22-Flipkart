@@ -124,9 +124,9 @@ public class UserDaoImpl implements UserDaoInterface {
     }
 
     /**
-     * Method to get RoleConstant of User from DataBase
+     * Method to getRole of User from DataBase
      * @param userId
-     * @return RoleConstant
+     * @return Role
      */
     @Override
     public int getRole(int userId)

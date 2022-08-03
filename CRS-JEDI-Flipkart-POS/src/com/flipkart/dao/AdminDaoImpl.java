@@ -292,6 +292,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
         return professorList;
     }
 
+    /**
+     * Utility Method for generating report card
+     * @param studentId
+     */
     public void setGeneratedReportCardTrue(String studentId) {
         String sql1 = "update student set isReportGenerated = 1 where studentId = ?";
 
@@ -305,6 +309,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
     }
 
+    /**
+     * Method to generate Report Card
+     * @param studentId
+     */
     public List<RegisteredCourse> generateGradeCard(int studentId) {
         List<RegisteredCourse> CoursesOfStudent = new ArrayList();
 
